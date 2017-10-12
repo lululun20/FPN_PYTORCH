@@ -32,9 +32,9 @@ def weights_init(m):
 
 
 
-class Net(nn.Module):
+class FramePredictionNetwork(nn.Module):
     def __init__(self):
-        super(Net, self).__init__()
+        super(FramePredictionNetwork, self).__init__()
 
         self.conv1 = nn.Conv2d(3, 32, 3, stride=1, padding=1)
         self.conv2 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
@@ -42,8 +42,6 @@ class Net(nn.Module):
 #        self.conv4 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
 #        self.conv5 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
 #        self.conv6 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
-
-
 
 
         #self.fc1 = nn.Linear()
@@ -54,7 +52,7 @@ class Net(nn.Module):
         self.fc2 = nn.Linear(1280, 288)
 
         self.fc2.weight.data = normalized_columns_initializer(
-            self.fc2.weight.data, 0.05)
+            self.fc2.weight.data, 0.1)
 
 
     def forward(self, x):
@@ -69,7 +67,7 @@ class Net(nn.Module):
 
         x = x.view(-1, 32 * 16 * 24)
         x = F.elu(self.fc1(x))
-        x = self.fc2(x)
+        x = F.elu(self.fc2(x))
         return x
 
 
@@ -79,7 +77,7 @@ h_size = 256
 
 
 retro_step = 3
-FPN = Net()
+FPN = FramePredictionNetwork()
 FPN.cuda()
 num_epochs = 50
 data_size = 500

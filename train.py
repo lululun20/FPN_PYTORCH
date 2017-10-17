@@ -193,7 +193,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
         if rank == 0 and len(img_dis) > 0:
             avg_img_dis.append(np.mean(img_dis))
             
-        if rank == 0 and episode_count % 20 == 0 and len(avg_img_dis) > 0:
+        if rank == 0 and episode_count % 200 == 0 and len(avg_img_dis) > 0:
             print("average image distance: ", np.mean(avg_img_dis))
             avg_img_dis = []
 
@@ -268,7 +268,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
         optimizer.step()
 
-        if rank == 0 and episode_count % 20 == 0:
+        if rank == 0 and episode_count % 200 == 0:
             print('observation_loss', np.mean(avg_ob_loss))
             avg_ob_loss = []
 

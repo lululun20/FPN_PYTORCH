@@ -28,14 +28,13 @@ def train(rank, args, shared_model, optimizer=None):
     env.seed(args.seed + rank)
 
     model = ActorCritic(env.observation_space.shape[0], env.action_space)
-    FPN = FramePredictionNetwork()
+
 
     if optimizer is None:
         optimizer = optim.Adam(shared_model.parameters(), lr=args.lr)
 
 
     model.train()
-    FPN.train()
 
     state = env.reset()
 
@@ -52,21 +51,12 @@ def train(rank, args, shared_model, optimizer=None):
         # Sync with the shared model
         retro_buffer = []
         model.load_state_dict(shared_model.state_dict())
-        FPN.load_state_dict(shared_FPN.state_dict())
         if done:
             cx = Variable(torch.zeros(1, 256))
             hx = Variable(torch.zeros(1, 256))
         else:
             cx = Variable(cx.data)
             hx = Variable(hx.data)
-
-        if done:
-            cx_fpn = Variable(torch.zeros(1, 256))
-            hx_fpn = Variable(torch.zeros(1, 256))
-        else:
-            cx_fpn = Variable(cx_fpn.data)
-            hx_fpn = Variable(hx_fpn.data)
-
 
 
 
@@ -118,8 +108,11 @@ def train(rank, args, shared_model, optimizer=None):
                 one_piece.append(one_action)
                 one_piece = np.vstack(one_piece)
                 one_past = np.reshape(one_piece, (1, 3, 16, 24))
+                one_data_point = (one_past, conv4.data.numpy())
                 temp = Variable(torch.FloatTensor(one_past))
                 
+                
+
                 inputs = (temp, (hx_fpn, cx_fpn))
                 one_pred, (hx_fpn, cx_fpn) = FPN(inputs)
                 pred_buffer.append(np.reshape(one_pred.data.numpy(), (-1, 32, 3, 3)))

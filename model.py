@@ -34,10 +34,17 @@ class FramePredictionNetwork(nn.Module):
 
         self.conv1 = nn.Conv2d(3, 32, 3, stride=1, padding=1)
         self.conv2 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
-#        self.conv3 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
+        self.conv3 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
 #        self.conv4 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
 #        self.conv5 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
 #        self.conv6 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
+
+#        self.lstm = nn.LSTMCell(32 * 16 * 24, 256)
+
+#        self.lstm.bias_ih.data.fill_(0)
+#        self.lstm.bias_hh.data.fill_(0)
+
+        
 
 
         #self.fc1 = nn.Linear()
@@ -54,7 +61,7 @@ class FramePredictionNetwork(nn.Module):
     def forward(self, x):
         x = F.elu(self.conv1(x))
         x = F.elu(self.conv2(x))
-#        x = F.elu(self.conv3(x))
+        x = F.elu(self.conv3(x))
 #        x = F.elu(self.conv4(x))
 #        x = F.elu(self.conv5(x))
 #        x = F.elu(self.conv6(x))
@@ -62,9 +69,15 @@ class FramePredictionNetwork(nn.Module):
 
 
         x = x.view(-1, 32 * 16 * 24)
+
+#        hx, cx = self.lstm(x, (hx, cx))
+
         x = F.elu(self.fc1(x))
         x = F.elu(self.fc2(x))
         return x
+
+
+
 
 
 
@@ -109,3 +122,17 @@ class ActorCritic(torch.nn.Module):
         x = hx
 
         return self.critic_linear(x), self.actor_linear(x), (hx, cx), y
+
+
+    def midway(self, midway_inputs):
+
+        x, (hx, cx) = midway_inputs
+
+        x = x.view(-1, 32 * 3 * 3)
+        hx, cx = self.lstm(x, (hx, cx))
+        x = hx
+        return self.critic_linear(x), (hx, cx)
+
+
+
+        

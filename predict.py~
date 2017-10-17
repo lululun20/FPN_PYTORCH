@@ -81,7 +81,6 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
 
         img_dis = []
-
         prev_feature = np.zeros((1, 32, 3, 3))
         
 
@@ -230,27 +229,18 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             one_true_ob = Variable(torch.FloatTensor(next_ob_buffer))
             predicted_ob = FPN(one_past)
         
+            ob_loss = FPN_loss_func(predicted_ob, one_true_ob)
 
+            FPN_optimizer.zero_grad()
 
-            obs_loss = []
+            ob_loss.backward()
+            torch.nn.utils.clip_grad_norm(FPN.parameters(), 30)
 
-            for i in range(10):
+            ensure_shared_grads(FPN, shared_FPN)
 
-                FPN_optimizer.zero_grad()
-
-                ob_loss = FPN_loss_func(predicted_ob, one_true_ob)
-
-                ob_loss.backward(retain_graph=True)
-                torch.nn.utils.clip_grad_norm(FPN.parameters(), 30)
-
-                ensure_shared_grads(FPN, shared_FPN)
-
-                FPN_optimizer.step()
-
-                obs_loss.append(np.sqrt(ob_loss.data.numpy() * 288))
+            FPN_optimizer.step()
             
-#            avg_ob_loss.append(np.mean(obs_loss))
-            avg_ob_loss.append(obs_loss[-1])
+            avg_ob_loss.append(np.sqrt(ob_loss.data.numpy() * 288))
 
 
         optimizer.zero_grad()

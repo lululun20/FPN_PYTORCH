@@ -63,6 +63,15 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             cx = Variable(cx.data)
             hx = Variable(hx.data)
 
+        if done:
+            cx_fpn = Variable(torch.zeros(1, 256))
+            hx_fpn = Variable(torch.zeros(1, 256))
+        else:
+            cx_fpn = Variable(cx_fpn.data)
+            hx_fpn = Variable(hx_fpn.data)
+
+
+
 
         actions = []
         values = []
@@ -78,6 +87,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
         history_buffer = []
         next_ob_buffer = []
+        pred_buffer = []
 
 
         img_dis = []
@@ -105,30 +115,20 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
                 #predict all kinds of actions
                 action_space_size = prob.data.numpy().shape[1]
                 value_holder = []
-                for i in range(action_space_size):
-                    one_action = np.full(retro_buffer[0].shape, i)
-                    one_piece = copy.deepcopy(retro_buffer)
-                    one_piece.append(one_action)
-                    one_piece = np.vstack(one_piece)
-                    one_past = np.reshape(one_piece, (1, 3, (retro_step + 1) * 4, 24))
-                    temp = Variable(torch.FloatTensor(one_past))
-                    one_pred = FPN(temp)
-                    #For one step prediction, lstm ouputs is not needed
-                    one_input = (one_pred, (hx, cx))
-                    pred_value, _ = model.midway(one_input)
-                    value_holder.append(pred_value.data[0].numpy()[0])
 
+                one_action = np.full(retro_buffer[0].shape, actions[-1])
+                one_piece = copy.deepcopy(retro_buffer)
+                one_piece.append(one_action)
+                one_piece = np.vstack(one_piece)
+                one_past = np.reshape(one_piece, (1, 3, 16, 24))
+                temp = Variable(torch.FloatTensor(one_past))
                 
-#                one_action = np.full(retro_buffer[0].shape, actions[-1])
-#                one_piece = copy.deepcopy(retro_buffer)
-#                one_piece.append(one_action)
-#                one_piece = np.vstack(one_piece)
-#                one_past = np.reshape(one_piece, (1, 3, 16, 24))
-#                temp = Variable(torch.FloatTensor(one_past))
-#                
-#                one_pred = FPN(temp)
-#                #For one step prediction, lstm ouputs is not needed
-#                one_input = (one_pred, (hx, cx))
+                inputs = (temp, (hx_fpn, cx_fpn))
+                one_pred, (hx_fpn, cx_fpn) = FPN(inputs)
+                pred_buffer.append(np.reshape(one_pred.data.numpy(), (-1, 32, 3, 3)))
+                #For one step prediction, lstm ouputs is not needed
+                one_input = (one_pred, (hx, cx))
+
 #                pred_value, _ = model.midway(one_input)
 #                des_value = pred_value.data[0].numpy()[0]
 
@@ -160,7 +160,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
                 one_piece.append(one_action)
                 one_piece = np.vstack(one_piece)
                 one_piece = np.reshape(one_piece, (3, (retro_step + 1) * 4, 24))
-                history_buffer.append(one_piece)                                
+#                history_buffer.append(one_piece)                                
                 next_ob_buffer.append(conv4.data.numpy())
                 
             if len(retro_buffer) == retro_step:
@@ -223,14 +223,16 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
 
 
-        if len(history_buffer) > 0:
+        if len(pred_buffer) > 0:
 
             next_ob_buffer = np.vstack(next_ob_buffer)
-            one_past = Variable(torch.FloatTensor(np.reshape(history_buffer, (-1, 3, (retro_step + 1) * 4, 24))))
-            one_true_ob = Variable(torch.FloatTensor(next_ob_buffer))
-            predicted_ob = FPN(one_past)
-        
+            pred_buffer = np.vstack(pred_buffer)
 
+            one_true_ob = Variable(torch.FloatTensor(next_ob_buffer))
+            
+            predicted_ob = Variable(torch.FloatTensor(pred_buffer), requires_grad=True)
+
+        
 
             obs_loss = []
 

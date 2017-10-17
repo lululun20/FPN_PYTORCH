@@ -20,10 +20,7 @@ def ensure_shared_grads(model, shared_model):
         shared_param._grad = param.grad
 
 
-def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optimizer=None):
-
-
-
+def train(rank, args, shared_model, optimizer=None):
 
     torch.manual_seed(args.seed + rank)
 

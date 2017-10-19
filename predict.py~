@@ -1,4 +1,5 @@
 import torch
+import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torch.autograd import Variable
@@ -12,6 +13,14 @@ from model import ActorCritic
 from model import FramePredictionNetwork
 
 
+data_size = 2000
+num_epochs = 50
+batch_size = 40
+train_data_size = data_size / 10 * 9
+test_data_size = data_size / 10
+lstm_hid_size = 512
+retro_step = 3
+
 def ensure_shared_grads(model, shared_model):
     for param, shared_param in zip(model.parameters(),
                                    shared_model.parameters()):
@@ -20,33 +29,21 @@ def ensure_shared_grads(model, shared_model):
         shared_param._grad = param.grad
 
 
-def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optimizer=None):
-
-
-
+def predict(rank, args, shared_model, optimizer=None, data_queue, num_workers):
 
     torch.manual_seed(args.seed + rank)
 
-    env = create_atari_env(args.env_name)
-    env.seed(args.seed + rank)
 
-    model = ActorCritic(env.observation_space.shape[0], env.action_space)
     FPN = FramePredictionNetwork()
+
 
     if optimizer is None:
         optimizer = optim.Adam(shared_model.parameters(), lr=args.lr)
 
 
-    model.train()
     FPN.train()
+    loss_func == nn.MSELoss()
 
-    state = env.reset()
-
-    state = torch.from_numpy(state)
-    done = True
-
-    episode_length = 0
-    episode_count = 0
 
     avg_ob_loss = []
     avg_img_dis = []
@@ -54,113 +51,146 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
     while True:
         # Sync with the shared model
         retro_buffer = []
-        model.load_state_dict(shared_model.state_dict())
-        FPN.load_state_dict(shared_FPN.state_dict())
-        if done:
-            cx = Variable(torch.zeros(1, 256))
-            hx = Variable(torch.zeros(1, 256))
-        else:
-            cx = Variable(cx.data)
-            hx = Variable(hx.data)
+
+        #load shared model
+        FPN.load_state_dict(shared_model.state_dict())
 
 
-        actions = []
-        values = []
-        log_probs = []
-        rewards = []
-        entropies = []
+        while data_queue.qsize() < data_size:
+            sleep(1)
+
+
+        #Get data from Queue
+        data = []
+        for i in range(data_size):
+            data.append(data_queue.get())
+
+        #shuffle data
+        indices = range(data_size)
+        np.random.shuffle(indices)
+
+
+        done = True
+
+        avg_img_dis = None
+        total_img_dis = 0
+
+        cx = Variable(torch.zeros(1, lstm_hid_size), volatile=False)
+        hx = Variable(torch.zeros(1, lstm_hid_size), volatile=False)
 
 
 
-        sum_rewards = 0
+        worker_state_container = [(hx, cx)] * num_workers
 
-        episode_count += 1
+        #Start iterating
+        for epoch in range(num_epochs):
 
-        history_buffer = []
-        next_ob_buffer = []
+            cx = Variable(torch.zeros(1, lstm_hid_size))
+            hx = Variable(torch.zeros(1, lstm_hid_size))
 
-
-        img_dis = []
-        prev_feature = np.zeros((1, 32, 3, 3))
         
+            
+            for data_index in range(train_data_size):
+            
+                total_loss = 0
 
-        for step in range(args.num_steps):
+                sudo_data_index = data_index
 
-            episode_length += 1
-            value, logit, (hx, cx),  conv4 = model((Variable(state.unsqueeze(0)),
-                                            (hx, cx)))
+                one_data_point = data[sudo_data_index]
 
+                batch_size = one_data_point.shape[0]
 
-            prob = F.softmax(logit)
+                worker_id = one_data_point[1]
 
-            log_prob = F.log_softmax(logit)
-            entropy = -(log_prob * prob).sum(1)
-            entropies.append(entropy)
+                done = one_data_point[0][:, 2]
+                one_piece_past = one_data_point[0][:, 0]
+                one_true_ob = one_data_point[0][:, 1]
 
-            action = prob.multinomial().data
+                #calculate average img distance
+
+                if epoch == 0:
+                    prev_img = np.zeros((1, 32, 3, 3))
+                    temp_total = 0
+                    for i in range(batch_size):
+                        if i != batch_size - 1:
+                            temp_total += np.linalg.norm(one_piece_past[i, 1] - one_piece_past[i, 0])
+                        else:
+                            for j in range(1, retro_step):
+                                temp_total += np.linalg.norm(one_piece_past[i, j] - one_piece_past[i, j - 1])
+
+                    total_img_dis += temp_total / (batch_size - 1 + retro_step - 1)
+
+                    
+                for i in range(batch_size):
+                    one_piece_past_v, one_true_ob_v = Variable(torch.FloatTensor(one_piece_past[i].cuda(), requires_grad=True), Variable(torch.FloatTensor(one_true_ob[i]).cuda()))
+                    inputs = one_piece_past_v.unsqueeze(0), (hx, cx)
+                    optimizer.zero_grad()
+                    predicted_ob, (hx, cx) = FPN(inputs)
+                    ob_loss = loss_func(predicted_ob, one_true_ob_v)
+                    ob_loss.backward(retain_graph=True)
+                    optimizer.step()
+                    total_loss += ob_loss.cpu().data.numpy()
+
+            if epoch == 0:
+                print('average adjacent feature distance:', total_img_dis / train_data_size)
 
             
-            if len(retro_buffer) == retro_step:
-                #predict all kinds of actions
-                action_space_size = prob.data.numpy().shape[1]
-                value_holder = []
-                for i in range(action_space_size):
-                    one_action = np.full(retro_buffer[0].shape, i)
-                    one_piece = copy.deepcopy(retro_buffer)
-                    one_piece.append(one_action)
-                    one_piece = np.vstack(one_piece)
-                    one_past = np.reshape(one_piece, (1, 3, (retro_step + 1) * 4, 24))
-                    temp = Variable(torch.FloatTensor(one_past))
-                    one_pred = FPN(temp)
-                    #For one step prediction, lstm ouputs is not needed
-                    one_input = (one_pred, (hx, cx))
-                    pred_value, _ = model.midway(one_input)
-                    value_holder.append(pred_value.data[0].numpy()[0])
 
+            if epoch % 5 == 0:
+                print('training on the ' + str(epoch) + ' epoch and the error is :')
                 
-#                one_action = np.full(retro_buffer[0].shape, actions[-1])
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+
+
+
+
+#            prev_feature = conv4.data.numpy()
+
+            #create samples for FPN
+#            if len(retro_buffer) == retro_step:
+#                a = action.numpy()
+#                one_action = np.full(retro_buffer[0].shape, a)
 #                one_piece = copy.deepcopy(retro_buffer)
 #                one_piece.append(one_action)
 #                one_piece = np.vstack(one_piece)
-#                one_past = np.reshape(one_piece, (1, 3, 16, 24))
-#                temp = Variable(torch.FloatTensor(one_past))
-#                
-#                one_pred = FPN(temp)
-#                #For one step prediction, lstm ouputs is not needed
-#                one_input = (one_pred, (hx, cx))
-#                pred_value, _ = model.midway(one_input)
-#                des_value = pred_value.data[0].numpy()[0]
-
-
-
-
-                #des_value = value_holder[actions[-1]]
-#                des_value = np.std(value_holder) / np.mean(value_holder)
-#                value_diff.append(des_value)
-
-
-#                value_diff.append(abs(des_value - value.data[0].numpy()[0]) / abs(value.data[0].numpy()[0]))
-
-
-            actions.append(action.numpy()[0, 0])
-                    
-            log_prob = log_prob.gather(1, Variable(action))
-
-            state, reward, done, _ = env.step(action.numpy())
-
-            img_dis.append(np.linalg.norm(prev_feature - conv4.data.numpy()))
-            prev_feature = conv4.data.numpy()
-
-            #create samples for FPN
-            if len(retro_buffer) == retro_step:
-                a = action.numpy()
-                one_action = np.full(retro_buffer[0].shape, a)
-                one_piece = copy.deepcopy(retro_buffer)
-                one_piece.append(one_action)
-                one_piece = np.vstack(one_piece)
-                one_piece = np.reshape(one_piece, (3, (retro_step + 1) * 4, 24))
-                history_buffer.append(one_piece)                                
-                next_ob_buffer.append(conv4.data.numpy())
+#                one_piece = np.reshape(one_piece, (3, (retro_step + 1) * 4, 24))
+#                history_buffer.append(one_piece)                                
+#                next_ob_buffer.append(conv4.data.numpy())
                 
             if len(retro_buffer) == retro_step:
                 retro_buffer.pop(0)
@@ -189,12 +219,12 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             if done:
                 break
 
-        if rank == 0 and len(img_dis) > 0:
-            avg_img_dis.append(np.mean(img_dis))
+ #       if rank == 0 and len(img_dis) > 0:
+ #           avg_img_dis.append(np.mean(img_dis))
             
-        if rank == 0 and episode_count % 20 == 0 and len(avg_img_dis) > 0:
-            print("average image distance: ", np.mean(avg_img_dis))
-            avg_img_dis = []
+ #       if rank == 0 and episode_count % 200 == 0 and len(avg_img_dis) > 0:
+ #           print("average image distance: ", np.mean(avg_img_dis))
+ #           avg_img_dis = []
 
         R = torch.zeros(1, 1)
         if not done:
@@ -204,7 +234,6 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
         values.append(Variable(R))
         policy_loss = 0
         value_loss = 0
-        FPN_loss_func = torch.nn.MSELoss()
         R = Variable(R)
         gae = torch.zeros(1, 1)
         for i in reversed(range(len(rewards))):
@@ -222,25 +251,36 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
 
 
-        if len(history_buffer) > 0:
+        if len(pred_buffer) > 0:
 
             next_ob_buffer = np.vstack(next_ob_buffer)
-            one_past = Variable(torch.FloatTensor(np.reshape(history_buffer, (-1, 3, (retro_step + 1) * 4, 24))))
+            pred_buffer = np.vstack(pred_buffer)
+
             one_true_ob = Variable(torch.FloatTensor(next_ob_buffer))
-            predicted_ob = FPN(one_past)
-        
-            ob_loss = FPN_loss_func(predicted_ob, one_true_ob)
-
-            FPN_optimizer.zero_grad()
-
-            ob_loss.backward()
-            torch.nn.utils.clip_grad_norm(FPN.parameters(), 30)
-
-            ensure_shared_grads(FPN, shared_FPN)
-
-            FPN_optimizer.step()
             
-            avg_ob_loss.append(np.sqrt(ob_loss.data.numpy() * 288))
+            predicted_ob = Variable(torch.FloatTensor(pred_buffer), requires_grad=True)
+
+        
+
+            obs_loss = []
+
+            for i in range(10):
+
+                FPN_optimizer.zero_grad()
+
+                ob_loss = FPN_loss_func(predicted_ob, one_true_ob)
+
+                ob_loss.backward(retain_graph=True)
+                torch.nn.utils.clip_grad_norm(FPN.parameters(), 30)
+
+                ensure_shared_grads(FPN, shared_FPN)
+
+                FPN_optimizer.step()
+
+                obs_loss.append(np.sqrt(ob_loss.data.numpy() * 288))
+            
+#            avg_ob_loss.append(np.mean(obs_loss))
+            avg_ob_loss.append(obs_loss[-1])
 
 
         optimizer.zero_grad()
@@ -256,7 +296,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
         optimizer.step()
 
-        if rank == 0 and episode_count % 20 == 0:
+        if rank == 0 and episode_count % 200 == 0:
             print('observation_loss', np.mean(avg_ob_loss))
             avg_ob_loss = []
 

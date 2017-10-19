@@ -1,4 +1,5 @@
 import torch
+import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torch.autograd import Variable
@@ -12,6 +13,14 @@ from model import ActorCritic
 from model import FramePredictionNetwork
 
 
+data_size = 2000
+num_epochs = 50
+batch_size = 40
+train_data_size = data_size / 10 * 9
+test_data_size = data_size / 10
+lstm_hid_size = 512
+retro_step = 3
+
 def ensure_shared_grads(model, shared_model):
     for param, shared_param in zip(model.parameters(),
                                    shared_model.parameters()):
@@ -20,29 +29,21 @@ def ensure_shared_grads(model, shared_model):
         shared_param._grad = param.grad
 
 
-def train(rank, args, shared_model, optimizer=None, data_queue):
+def predict(rank, args, shared_model, optimizer=None, data_queue, num_workers):
 
     torch.manual_seed(args.seed + rank)
 
-    env = create_atari_env(args.env_name)
-    env.seed(args.seed + rank)
 
-    model = ActorCritic(env.observation_space.shape[0], env.action_space)
+    FPN = FramePredictionNetwork()
 
 
     if optimizer is None:
         optimizer = optim.Adam(shared_model.parameters(), lr=args.lr)
 
 
-    model.train()
+    FPN.train()
+    loss_func == nn.MSELoss()
 
-    state = env.reset()
-
-    state = torch.from_numpy(state)
-    done = True
-
-    episode_length = 0
-    episode_count = 0
 
     avg_ob_loss = []
     avg_img_dis = []
@@ -50,100 +51,152 @@ def train(rank, args, shared_model, optimizer=None, data_queue):
     while True:
         # Sync with the shared model
         retro_buffer = []
-        model.load_state_dict(shared_model.state_dict())
-        if done:
-            cx = Variable(torch.zeros(1, 256))
-            hx = Variable(torch.zeros(1, 256))
-        else:
-            cx = Variable(cx.data)
-            hx = Variable(hx.data)
+
+        #load shared model
+        FPN.load_state_dict(shared_model.state_dict())
+
+
+        while data_queue.qsize() < data_size:
+            sleep(1)
+
+
+        #Get data from Queue
+        data = []
+        for i in range(data_size):
+            data.append(data_queue.get())
+
+        #shuffle data
+        indices = range(data_size)
+        np.random.shuffle(indices)
+
+
+        done = True
+
+        avg_img_dis = None
+        total_img_dis = 0
+
+        cx = Variable(torch.zeros(1, lstm_hid_size), volatile=False)
+        hx = Variable(torch.zeros(1, lstm_hid_size), volatile=False)
 
 
 
-        actions = []
-        values = []
-        log_probs = []
-        rewards = []
-        entropies = []
-        dones = []
+        worker_state_container = [(hx, cx)] * num_workers
 
+        #Start iterating
+        for epoch in range(num_epochs):
 
+            cx = Variable(torch.zeros(1, lstm_hid_size))
+            hx = Variable(torch.zeros(1, lstm_hid_size))
 
-        sum_rewards = 0
-
-        episode_count += 1
-
-        history_buffer = []
-        next_ob_buffer = []
-        pred_buffer = []
-
-
-        img_dis = []
-
-        prev_feature = np.zeros((1, 32, 3, 3))
         
+            
+            for data_index in range(train_data_size):
+            
+                total_loss = 0
 
-        for step in range(args.num_steps):
+                sudo_data_index = data_index
 
-            episode_length += 1
-            value, logit, (hx, cx),  conv4 = model((Variable(state.unsqueeze(0)),
-                                            (hx, cx)))
+                one_data_point = data[sudo_data_index]
+
+                batch_size = one_data_point.shape[0]
+
+                worker_id = one_data_point[1]
+
+                dones = one_data_point[0][:, 2]
+                done = dones[0]
+
+                #reload the state of lstm
+                if done:
+                    FPN.load_state_dict(shared_model.state_dict())
+                    cx = Variable(torch.zeros(1, lstm_hid_size), volatile=False)
+                    hx = Varaible(torch.zeros(1, lstm_hid_size), volatile=False)
+
+                else:
+                    (cx, hx) = worker_state_container[worker_id][-1]
+                    cx = Variable(cx.data, volatile=False)
+                    hx = Variable(hx.data, volatile=False)
+                
 
 
-            prob = F.softmax(logit)
+                one_piece_past = one_data_point[0][:, 0]
+                one_true_ob = one_data_point[0][:, 1]
 
-            log_prob = F.log_softmax(logit)
-            entropy = -(log_prob * prob).sum(1)
-            entropies.append(entropy)
+                #calculate average img distance
 
-            action = prob.multinomial().data
+                if epoch == 0:
+                    prev_img = np.zeros((1, 32, 3, 3))
+                    temp_total = 0
+                    for i in range(batch_size):
+                        if i != batch_size - 1:
+                            temp_total += np.linalg.norm(one_piece_past[i, 1] - one_piece_past[i, 0])
+                        else:
+                            for j in range(1, retro_step):
+                                temp_total += np.linalg.norm(one_piece_past[i, j] - one_piece_past[i, j - 1])
+
+                    total_img_dis += temp_total / (batch_size - 1 + retro_step - 1)
+
+                    
+                for i in range(batch_size):
+                    one_piece_past_v, one_true_ob_v = Variable(torch.FloatTensor(one_piece_past[i].cuda(), requires_grad=True), Variable(torch.FloatTensor(one_true_ob[i]).cuda()))
+                    inputs = one_piece_past_v.unsqueeze(0), (hx, cx)
+                    optimizer.zero_grad()
+                    predicted_ob, (hx, cx) = FPN(inputs)
+                    ob_loss = loss_func(predicted_ob, one_true_ob_v)
+                    ob_loss.backward(retain_graph=True)
+                    optimizer.step()
+                    total_loss += ob_loss.cpu().data.numpy()
+
+                if len(worker_state_container) > 0:
+                    worker_state_container[worker_id].pop(0)
+                worker_state_container[worker_id].append((hx, cx))
+
+            if epoch == 0:
+                print('average adjacent feature distance:', total_img_dis / train_data_size)
 
             
-            if len(retro_buffer) == retro_step:
-                #predict all kinds of actions
-                action_space_size = prob.data.numpy().shape[1]
-                value_holder = []
-
-                one_action = np.full(retro_buffer[0].shape, actions[-1])
-                one_piece = copy.deepcopy(retro_buffer)
-                one_piece.append(one_action)
-                one_piece = np.vstack(one_piece)
-                one_past = np.reshape(one_piece, (1, 3, 16, 24))
-                one_data_point = (one_past, conv4.data.numpy(), dones[-1])
-                data_queue.put(one_data_point)
-
-
-#                temp = Variable(torch.FloatTensor(one_past))
+            if epoch % 5 == 0:
+                print('training on the ' + str(epoch) + ' epoch and the error is :')
                 
-                
-
-#                inputs = (temp, (hx_fpn, cx_fpn))
-#                one_pred, (hx_fpn, cx_fpn) = FPN(inputs)
-#                pred_buffer.append(np.reshape(one_pred.data.numpy(), (-1, 32, 3, 3)))
-                #For one step prediction, lstm ouputs is not needed
-#                one_input = (one_pred, (hx, cx))
-
-#                pred_value, _ = model.midway(one_input)
-#                des_value = pred_value.data[0].numpy()[0]
+        
 
 
 
 
-                #des_value = value_holder[actions[-1]]
-#                des_value = np.std(value_holder) / np.mean(value_holder)
-#                value_diff.append(des_value)
 
 
-#                value_diff.append(abs(des_value - value.data[0].numpy()[0]) / abs(value.data[0].numpy()[0]))
 
 
-            actions.append(action.numpy()[0, 0])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     
-            log_prob = log_prob.gather(1, Variable(action))
 
-            state, reward, done, _ = env.step(action.numpy())
 
-#            img_dis.append(np.linalg.norm(prev_feature - conv4.data.numpy()))
+
+
 #            prev_feature = conv4.data.numpy()
 
             #create samples for FPN
@@ -180,7 +233,6 @@ def train(rank, args, shared_model, optimizer=None, data_queue):
             values.append(value)
             log_probs.append(log_prob)
             rewards.append(reward)
-            dones.append(done)
 
             if done:
                 break

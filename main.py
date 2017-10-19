@@ -1,4 +1,5 @@
 from __future__ import print_function
+import Queue
 
 import argparse
 import os
@@ -75,11 +76,11 @@ if __name__ == '__main__':
 
 
     
-
+    q = Queue(maxsize=2200)
 
     processes = []
 
-    p = mp.Process(target=test, args=(args.num_processes, args, shared_model))
+    p = mp.Process(target=test, args=(args.num_processes, args, shared_model,q))
     p.start()
     processes.append(p)
 

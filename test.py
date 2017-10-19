@@ -29,6 +29,8 @@ def test(rank, args, shared_model):
     # a quick hack to prevent the agent from stucking
     actions = deque(maxlen=100)
     episode_length = 0
+    num_one = 0
+    num_zero = 0
     while True:
         episode_length += 1
         # Sync with the shared model
@@ -48,6 +50,11 @@ def test(rank, args, shared_model):
         state, reward, done, _ = env.step(action[0, 0])
         done = done or episode_length >= args.max_episode_length
         reward_sum += reward
+        if reward == 1:
+            num_one += 1
+        elif reward == -1:
+            num_zero += 1
+
 
         # a quick hack to prevent the agent from stucking
         actions.append(action[0, 0])
@@ -63,6 +70,8 @@ def test(rank, args, shared_model):
             episode_length = 0
             actions.clear()
             state = env.reset()
+            #print("1s and 0s: ", num_one, num_zero)
             time.sleep(60)
+
 
         state = torch.from_numpy(state)

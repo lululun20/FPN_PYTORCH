@@ -51,6 +51,11 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
     avg_ob_loss = []
     avg_img_dis = []
 
+    num_one = 0
+    num_zero = 0
+
+    global_step = 0
+
     while True:
         # Sync with the shared model
         retro_buffer = []
@@ -86,6 +91,8 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
         
 
         for step in range(args.num_steps):
+
+            global_step += 1
 
             episode_length += 1
             value, logit, (hx, cx),  conv4 = model((Variable(state.unsqueeze(0)),
@@ -136,8 +143,11 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
 
                 #des_value = value_holder[actions[-1]]
-#                des_value = np.std(value_holder) / np.mean(value_holder)
-#                value_diff.append(des_value)
+
+                    
+                des_value = np.std(value_holder) / np.mean(value_holder)
+                #value_diff.append(des_value)
+
 
 
 #                value_diff.append(abs(des_value - value.data[0].numpy()[0]) / abs(value.data[0].numpy()[0]))
@@ -148,6 +158,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             log_prob = log_prob.gather(1, Variable(action))
 
             state, reward, done, _ = env.step(action.numpy())
+
 
             img_dis.append(np.linalg.norm(prev_feature - conv4.data.numpy()))
             prev_feature = conv4.data.numpy()
@@ -175,6 +186,12 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             sum_rewards += reward
         
             reward = max(min(reward, 1), -1)
+
+            if reward == 1:
+                num_one += 1
+            elif reward == -1:
+                num_zero += 1
+
             
 
             if done:
@@ -189,6 +206,11 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
             if done:
                 break
+
+
+
+            
+
 
         if rank == 0 and len(img_dis) > 0:
             avg_img_dis.append(np.mean(img_dis))

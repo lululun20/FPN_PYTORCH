@@ -34,7 +34,7 @@ class FramePredictionNetwork(nn.Module):
 
         self.conv1 = nn.Conv2d(3, 32, 3, stride=1, padding=1)
         self.conv2 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
-#        self.conv3 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
+        self.conv3 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
 #        self.conv4 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
 #        self.conv5 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
 #        self.conv6 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
@@ -44,27 +44,32 @@ class FramePredictionNetwork(nn.Module):
 
         self.apply(weights_init)
 
-        self.fc1 = nn.Linear(32 * 16 * 24, 1280)
-        self.fc2 = nn.Linear(1280, 288)
+        self.fc1 = nn.Linear(32 * 16 * 24, 750)
+        self.fc2 = nn.Linear(750, 288)
+        self.fc3 = nn.Linear(750, 1)
 
         self.fc2.weight.data = normalized_columns_initializer(
             self.fc2.weight.data, 0.1)
 
+        self.fc3.weight.data = normalized_columns_initializer(
+            self.fc3.weight.data, 0.1)
+
 
     def forward(self, x):
-        x = F.elu(self.conv1(x))
-        x = F.elu(self.conv2(x))
-#        x = F.elu(self.conv3(x))
+        x = F.relu(self.conv1(x))
+        x = F.relu(self.conv2(x))
+        x = F.relu(self.conv3(x))
 #        x = F.elu(self.conv4(x))
 #        x = F.elu(self.conv5(x))
 #        x = F.elu(self.conv6(x))
 
 
-
+#        print(x.size())
         x = x.view(-1, 32 * 16 * 24)
         x = F.elu(self.fc1(x))
-        x = F.elu(self.fc2(x))
-        return x
+        y = self.fc2(x)
+        z = self.fc3(x)
+        return y, z
 
 
 

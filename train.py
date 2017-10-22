@@ -47,6 +47,9 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
     episode_length = 0
     episode_count = 0
 
+    previous_action = 0
+    previous_reward = 0
+
     while True:
         # Sync with the shared model
         retro_buffer = []
@@ -72,12 +75,16 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
         history_buffer = []
         next_ob_buffer = []
+        reward_buffer = []
+
 
         for step in range(args.num_steps):
 
             episode_length += 1
-            value, logit, (hx, cx),  conv4 = model((Variable(state.unsqueeze(0)),
+
+            value, logit, (hx, cx), conv4 = model((Variable(state.unsqueeze(0)),
                                             (hx, cx)))
+
 
 
             prob = F.softmax(logit)
@@ -91,8 +98,11 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
             state, reward, done, _ = env.step(action.numpy())
 
+        
+
+
             if len(retro_buffer) == retro_step:
-                a = action.numpy()
+                a = previous_action
                 one_action = np.full(retro_buffer[0].shape, a)
                 one_piece = copy.deepcopy(retro_buffer)
                 one_piece.append(one_action)
@@ -100,6 +110,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
                 one_piece = np.reshape(one_piece, (3, 16, 24))
                 history_buffer.append(one_piece)                                
                 next_ob_buffer.append(conv4.data.numpy())
+                reward_buffer.append(previous_reward)
                 
             if len(retro_buffer) == retro_step:
                 retro_buffer.pop(0)
@@ -113,11 +124,29 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             sum_rewards += reward
         
             reward = max(min(reward, 1), -1)
-            
+
+            previous_action = action.numpy()
+            previous_reward = reward
 
             if done:
+                if len(retro_buffer) == retro_step:
+                    state = torch.from_numpy(state)                
+                    _, _, _, conv4 = model((Variable(state.unsqueeze(0)),
+                                            (hx, cx)))
+                    a = action.numpy()
+                    one_action = np.full(retro_buffer[0].shape, a)
+                    one_piece = copy.deepcopy(retro_buffer)
+                    one_piece.append(one_action)
+                    one_piece = np.vstack(one_piece)
+                    one_piece = np.reshape(one_piece, (3, 16, 24))
+                    history_buffer.append(one_piece)                                
+                    next_ob_buffer.append(conv4.data.numpy())
+                    reward_buffer.append(previous_reward)
+            
                 episode_length = 0
                 state = env.reset()
+                retro_buffer = []
+
 
 
             state = torch.from_numpy(state)
@@ -158,20 +187,28 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
         if len(history_buffer) > 0:
 
             next_ob_buffer = np.vstack(next_ob_buffer)
+            reward_buffer = np.vstack(reward_buffer)
 
             one_past = Variable(torch.FloatTensor(np.reshape(history_buffer, (-1, 3, (retro_step + 1) * 4, 24))))
 
 
             one_true_ob = Variable(torch.FloatTensor(next_ob_buffer))
 
+            one_true_reward = Variable(torch.FloatTensor(reward_buffer))
 
-            predicted_ob = FPN(one_past)
+
+            predicted_ob, predicted_reward = FPN(one_past)
         
             ob_loss = FPN_loss_func(predicted_ob, one_true_ob)
 
+            reward_loss = FPN_loss_func(predicted_reward, one_true_reward)
+
             FPN_optimizer.zero_grad()
 
-            ob_loss.backward()
+            total_loss = ob_loss + reward_loss
+
+            total_loss.backward()
+            
             torch.nn.utils.clip_grad_norm(FPN.parameters(), args.max_grad_norm)
 
             ensure_shared_grads(FPN, shared_FPN)

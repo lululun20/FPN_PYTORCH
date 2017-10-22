@@ -9,7 +9,8 @@ from envs import create_atari_env
 from model import ActorCritic
 
 
-def test(rank, args, shared_model):
+def test(rank, args, shared_model, signal_queue):
+
     torch.manual_seed(args.seed + rank)
 
     env = create_atari_env(args.env_name)
@@ -30,6 +31,10 @@ def test(rank, args, shared_model):
     actions = deque(maxlen=100)
     episode_length = 0
     while True:
+
+        while signal_queue.qsize() > 0:
+            time.sleep(30)
+
         episode_length += 1
         # Sync with the shared model
         if done:

@@ -20,7 +20,7 @@ def ensure_shared_grads(model, shared_model):
         shared_param._grad = param.grad
 
 
-def train(rank, args, shared_model, optimizer=None, data_queue):
+def train(rank, args, shared_model, retro_step, data_queue, signal_queue, optimizer=None):
 
     torch.manual_seed(args.seed + rank)
 
@@ -47,7 +47,19 @@ def train(rank, args, shared_model, optimizer=None, data_queue):
     avg_ob_loss = []
     avg_img_dis = []
 
+    training = True
+
     while True:
+
+
+        if signal_queue.qsize() > 0 and training == True:
+            training = False
+         
+        while signal_queue.qsize() > 0 and training == False:
+            time.sleep(30)
+
+        training = True
+
         # Sync with the shared model
         retro_buffer = []
         model.load_state_dict(shared_model.state_dict())
@@ -98,6 +110,9 @@ def train(rank, args, shared_model, optimizer=None, data_queue):
 
             action = prob.multinomial().data
 
+
+            data_buffer = []
+            
             
             if len(retro_buffer) == retro_step:
                 #predict all kinds of actions
@@ -109,8 +124,12 @@ def train(rank, args, shared_model, optimizer=None, data_queue):
                 one_piece.append(one_action)
                 one_piece = np.vstack(one_piece)
                 one_past = np.reshape(one_piece, (1, 3, 16, 24))
-                one_data_point = (one_past, conv4.data.numpy(), dones[-1])
-                data_queue.put(one_data_point)
+
+            
+
+            one_data_point = (one_past, conv4.data.numpy(), dones[-1])
+            data_buffer.append(one_data_point)
+
 
 
 #                temp = Variable(torch.FloatTensor(one_past))
@@ -184,6 +203,9 @@ def train(rank, args, shared_model, optimizer=None, data_queue):
 
             if done:
                 break
+
+        one_data_point = (rank, data_buffer)
+        data_queue.put(one_data_point)
 
  #       if rank == 0 and len(img_dis) > 0:
  #           avg_img_dis.append(np.mean(img_dis))

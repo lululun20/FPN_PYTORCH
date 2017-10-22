@@ -76,18 +76,24 @@ if __name__ == '__main__':
 
 
     
-    q = Queue(maxsize=2200)
+    data_q = Queue(maxsize=2001)
+    signal_q = Queue(maxsize=1)
 
     processes = []
 
-    p = mp.Process(target=test, args=(args.num_processes, args, shared_model,q))
+    p = mp.Process(target=test, args=(args.num_processes, args, shared_model, signal_q))
+    p.start()
+    processes.append(p)
+
+
+    p = mp.Process(target=predict, args=(args.num_processes, args, shared_FPN, 3, data_q, signal_q, optimizer))
     p.start()
     processes.append(p)
 
 
 
     for rank in range(0, args.num_processes):
-        p = mp.Process(target=train, args=(rank, args, shared_model, shared_FPN, 3, FPN_optimizer, optimizer))
+        p = mp.Process(target=train, args=(rank, args, shared_model, 3, data_q, signal_q, optimizer))
         p.start()
         processes.append(p)
     for p in processes:

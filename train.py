@@ -49,6 +49,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
     episode_count = 0
 
     avg_ob_loss = []
+    avg_value_loss = []
     avg_img_dis = []
 
     num_one = 0
@@ -108,7 +109,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             action = prob.multinomial().data
 
             
-            if len(retro_buffer) == retro_step:
+            if len(retro_buffer) == retro_step and 1 < -1:
                 #predict all kinds of actions
                 action_space_size = prob.data.numpy().shape[1]
                 value_holder = []
@@ -164,7 +165,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             prev_feature = conv4.data.numpy()
 
             #create samples for FPN
-            if len(retro_buffer) == retro_step:
+            if len(retro_buffer) == retro_step and 1 < -1:
                 a = action.numpy()
                 one_action = np.full(retro_buffer[0].shape, a)
                 one_piece = copy.deepcopy(retro_buffer)
@@ -186,11 +187,6 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             sum_rewards += reward
         
             reward = max(min(reward, 1), -1)
-
-            if reward == 1:
-                num_one += 1
-            elif reward == -1:
-                num_zero += 1
 
             
 
@@ -245,7 +241,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
 
 
-        if len(history_buffer) > 0:
+        if len(history_buffer) > 0 and 1 < -1:
 
             next_ob_buffer = np.vstack(next_ob_buffer)
             one_past = Variable(torch.FloatTensor(np.reshape(history_buffer, (-1, 3, (retro_step + 1) * 4, 24))))
@@ -288,11 +284,14 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
 
         optimizer.step()
 
+        avg_value_loss.append(value_loss.data.numpy()[0, 0])
+
         if rank == 0 and episode_count % 20 == 0:
-            print('observation_loss', np.mean(avg_ob_loss))
+#            print('observation_loss', np.mean(avg_ob_loss))
             avg_ob_loss = []
 
-#        if rank == 0:
-#            print('value_loss', value_loss.data.numpy())
+        if rank == 0 and episode_count % 20 == 0:
+            print('value_loss', np.mean(avg_value_loss))
+            avg_value_loss = []
 
 

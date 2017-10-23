@@ -73,6 +73,12 @@ class FramePredictionNetwork(nn.Module):
 
 
 
+        
+
+
+
+
+
 
 class ActorCritic(torch.nn.Module):
     def __init__(self, num_inputs, action_space):
@@ -114,3 +120,11 @@ class ActorCritic(torch.nn.Module):
         x = hx
 
         return self.critic_linear(x), self.actor_linear(x), (hx, cx), y
+
+
+    def midway(self, inputs):
+        x, (hx, cx) = inputs
+        x = x.view(-1, 32 * 3 * 3)
+        hx, cx = self.lstm(x, (hx, cx))
+        x = hx
+        return self.critic_linear(x), (hx, cx)

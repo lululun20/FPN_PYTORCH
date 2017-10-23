@@ -50,6 +50,10 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
     previous_action = 0
     previous_reward = 0
 
+    pretrain_step = 1000
+
+    worker_step = 0
+
     while True:
         # Sync with the shared model
         retro_buffer = []
@@ -77,10 +81,13 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
         next_ob_buffer = []
         reward_buffer = []
 
+        
+
 
         for step in range(args.num_steps):
 
             episode_length += 1
+            worker_step += 1
 
             value, logit, (hx, cx), conv4 = model((Variable(state.unsqueeze(0)),
                                             (hx, cx)))
@@ -93,12 +100,36 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
             entropy = -(log_prob * prob).sum(1)
             entropies.append(entropy)
 
+
+            predicted_value_holder = []
+            lstm_state_holder = []
+
+            if len(retro_buffer) == retro_step and worker_step < pretrain_step:
+                for a in range(env.action_space.n):
+                    a = previous_action
+                    one_action = np.full(retro_buffer[0].shape, a)
+                    one_piece = copy.deepcopy(retro_buffer)
+                    one_piece.append(one_action)
+                    one_piece = np.vstack(one_piece)
+                    one_piece = np.reshape(one_piece, (3, 16, 24))
+                    one_piece = Variable(torch.FloatTensor(one_piece).unsqueeze(0))
+                    predicted_cv, predicted_reward = FPN(one_piece)
+                    value, temp_state = model.midway((predicted_cv, (hx, cx)))
+                    predicted_value_holder.append(value.data.numpy() + predicted_reward.data.numpy())
+                    lstm_state_holder.append(temp_state)
+                
+                action = np.argmax(predicted_value_holder)
+
+
+
+
             action = prob.multinomial().data
             log_prob = log_prob.gather(1, Variable(action))
 
             state, reward, done, _ = env.step(action.numpy())
 
         
+                
 
 
             if len(retro_buffer) == retro_step:
@@ -108,6 +139,7 @@ def train(rank, args, shared_model, shared_FPN, retro_step, FPN_optimizer, optim
                 one_piece.append(one_action)
                 one_piece = np.vstack(one_piece)
                 one_piece = np.reshape(one_piece, (3, 16, 24))
+
                 history_buffer.append(one_piece)                                
                 next_ob_buffer.append(conv4.data.numpy())
                 reward_buffer.append(previous_reward)

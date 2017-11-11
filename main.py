@@ -2,22 +2,24 @@ from __future__ import print_function
 
 import argparse
 import os
+from multiprocessing import Queue
 
 import torch
 import torch.multiprocessing as mp
 
+
+
 import my_optim
 from envs import create_atari_env
-from model import ActorCritic
-from model import FramePredictionNetwork
+from model import ValuePredictionNetwork
 from test import test
 from train import train
-from observer import observer
+
 
 # Based on
 # https://github.com/pytorch/examples/tree/master/mnist_hogwild
 # Training settings
-parser = argparse.ArgumentParser(description='A3C')
+parser = argparse.ArgumentParser(description='VPN')
 parser.add_argument('--lr', type=float, default=0.0001,
                     help='learning rate (default: 0.0001)')
 parser.add_argument('--gamma', type=float, default=0.99,
@@ -42,6 +44,13 @@ parser.add_argument('--env-name', default='PongDeterministic-v4',
                     help='environment to train on (default: PongDeterministic-v4)')
 parser.add_argument('--no-shared', default=False,
                     help='use an optimizer without shared momentum.')
+parser.add_argument('--predict-step', type=int, default=3,
+                    help='prediction step in VPN (default: 4)')
+parser.add_argument('--branch-factor', type=int, default=4,
+                    help='branch factor in VPN (default: 4)')
+parser.add_argument('--plan-depth', type=int, default=1,
+                    help='plan depth in VPN (default: 4)')
+
 
 
 if __name__ == '__main__':
@@ -53,12 +62,12 @@ if __name__ == '__main__':
     # torch.manual_seed(args.seed)
 
     env = create_atari_env(args.env_name)
-    shared_model = ActorCritic(
-        env.observation_space.shape[0], env.action_space)
-    shared_FPN = FramePredictionNetwork()
+    shared_model = ValuePredictionNetwork(
+        env.observation_space.shape[0], env.action_space, args.predict_step, args.branch_factor)
+
 
     shared_model.share_memory()
-    shared_FPN.share_memory()
+
 
 
 
@@ -67,26 +76,25 @@ if __name__ == '__main__':
     else:
         optimizer = my_optim.SharedAdam(shared_model.parameters(), lr=args.lr)
         optimizer.share_memory()
-        FPN_optimizer = my_optim.SharedAdam(shared_model.parameters(), lr=1e-4)
-        FPN_optimizer.share_memory()
 
 
 
 
 
+    signal_queue = Queue(maxsize=1)
     
 
 
     processes = []
 
-    p = mp.Process(target=test, args=(args.num_processes, args, shared_model))
+    p = mp.Process(target=test, args=(args.num_processes, args, shared_model, signal_queue))
     p.start()
     processes.append(p)
 
 
 
     for rank in range(0, args.num_processes):
-        p = mp.Process(target=train, args=(rank, args, shared_model, shared_FPN, 3, FPN_optimizer, optimizer))
+        p = mp.Process(target=train, args=(rank, args, shared_model, signal_queue, optimizer))
         p.start()
         processes.append(p)
     for p in processes:

@@ -102,7 +102,6 @@ class ValuePredictionNetwork(torch.nn.Module):
 #        x = F.elu(self.conv2(x))
 #        x = F.elu(self.conv3(x))
         abstract_state = F.elu(self.conv2(x))
-
         return abstract_state
 
 
@@ -149,6 +148,7 @@ class ValuePredictionNetwork(torch.nn.Module):
         value_holder = []
         state_holder = []
         next_state, reward_next, value_next = self.core(current_state, action)
+
         if d == 1:
             return reward_next.data.numpy()[0, 0] + self.gamma * value_next.data.numpy()[0, 0]
 

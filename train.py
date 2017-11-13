@@ -33,7 +33,7 @@ def train(rank, args, shared_model, signal_queue, optimizer=None):
 
     #Set up the value and policy network and the model(FPN) network
 
-    model = ValuePredictionNetwork(env.observation_space.shape[0], env.action_space, args.predict_step, args.branch_factor)
+    model = ValuePredictionNetwork(env.observation_space.shape[0] * args.frame_skip, env.action_space, args.predict_step, args.branch_factor)
 
 
     if optimizer is None:
@@ -44,7 +44,19 @@ def train(rank, args, shared_model, signal_queue, optimizer=None):
 
     state = env.reset()
     action_size = env.action_space.n
+    burst_states = []
+
+
+
+    #tiling states
+    for _ in range(args.frame_skip):
+        burst_states.append(state)
+        
+        
+    state = np.vstack(burst_states)
     state = torch.from_numpy(state)
+
+
     done = True
 
         
@@ -71,9 +83,7 @@ def train(rank, args, shared_model, signal_queue, optimizer=None):
         states.append(state)
         actions = []
         rewards = []
-
-        
-        sum_rewards = 0
+                
 
         episode_count += 1
 
@@ -95,23 +105,34 @@ def train(rank, args, shared_model, signal_queue, optimizer=None):
             if epsilon > 0.05:
                 epsilon -= annealing_reduction
 
+            
+            #Perform frame skip
+            burst_reward_sum = 0
+            burst_state = []
 
+            for _ in range(args.frame_skip):
+                state, reward, done, _ = env.step(action)                                        
+                burst_state.append(state)
+                reward = max(min(reward, 1), -1)
+                burst_reward_sum += reward
+                done = done or episode_length >= args.max_episode_length            
+                if done:
+                    break
+            
+            reward = burst_reward_sum
 
-            state, reward, done, _ = env.step(action)
-
-                                        
-            done = done or episode_length >= args.max_episode_length            
-
-            sum_rewards += reward
-        
-            reward = max(min(reward, 1), -1)
-
+            
             if done:
                 episode_length = 0
                 state = env.reset()
+                burst_state = []
+                while len(burst_state) < args.frame_skip:
+                    burst_state.append(state)
 
-            state = torch.from_numpy(state)
-            
+
+            burst_state = np.vstack(burst_state)
+            state = torch.from_numpy(burst_state)
+
 
             states.append(state)
             actions.append(action)
@@ -126,6 +147,7 @@ def train(rank, args, shared_model, signal_queue, optimizer=None):
         R = torch.zeros(1, 1)
         if not done:
             value_holder = []
+            #bootstrapping
             for action in range(action_size):
                 plan_value = model.plan(model.encode(Variable(state.unsqueeze(0))), action, args.plan_depth)
                 value_holder.append(plan_value)
@@ -166,9 +188,7 @@ def train(rank, args, shared_model, signal_queue, optimizer=None):
                 value_loss = value_loss + 0.5 * (R - p[0]).pow(2)
                 reward_loss = reward_loss + 100 * (rewards[i] - p[1]).pow(2)
 
-        
 
-        
 
         optimizer.zero_grad()
 

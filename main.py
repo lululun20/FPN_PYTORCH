@@ -50,6 +50,9 @@ parser.add_argument('--branch-factor', type=int, default=4,
                     help='branch factor in VPN (default: 4)')
 parser.add_argument('--plan-depth', type=int, default=1,
                     help='plan depth in VPN (default: 4)')
+parser.add_argument('--frame-skip', type=int, default=4,
+                    help='frame skip in VPN (default: 4)')
+
 
 
 
@@ -63,7 +66,7 @@ if __name__ == '__main__':
 
     env = create_atari_env(args.env_name)
     shared_model = ValuePredictionNetwork(
-        env.observation_space.shape[0], env.action_space, args.predict_step, args.branch_factor)
+        env.observation_space.shape[0] * args.frame_skip, env.action_space, args.predict_step, args.branch_factor)
 
 
     shared_model.share_memory()

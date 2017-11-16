@@ -65,7 +65,7 @@ def test(rank, args, shared_model, signal_queue):
                 time.strftime("%Hh %Mm %Ss",
                               time.gmtime(time.time() - start_time)),
                 reward_sum, episode_length))
-            if time.time() - start_time > 36000:
+            if time.time() - start_time > 48000:
                 signal_queue.put(True)
                 sys.exit('running out of time')
             reward_holder.append(reward_sum)

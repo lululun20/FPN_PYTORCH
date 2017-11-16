@@ -48,7 +48,7 @@ parser.add_argument('--predict-step', type=int, default=3,
                     help='prediction step in VPN (default: 4)')
 parser.add_argument('--branch-factor', type=int, default=4,
                     help='branch factor in VPN (default: 4)')
-parser.add_argument('--plan-depth', type=int, default=1,
+parser.add_argument('--plan-depth', type=int, default=2,
                     help='plan depth in VPN (default: 4)')
 
 

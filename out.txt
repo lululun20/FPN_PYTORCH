@@ -1,648 +1,395 @@
-[2017-11-10 21:17:55,372] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,322] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,322] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,323] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,325] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,325] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,325] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,326] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,326] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,326] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,326] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,326] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,326] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,326] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,326] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,326] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,327] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,327] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,327] Making new env: PongDeterministic-v4
-[2017-11-10 21:17:56,327] Making new env: PongDeterministic-v4
-Time 00h 00m 02s, episode reward -2.0, episode length 100
-Time 00h 01m 04s, episode reward -2.0, episode length 100
-Time 00h 02m 06s, episode reward -2.0, episode length 100
-Time 00h 03m 08s, episode reward -2.0, episode length 100
-Time 00h 04m 23s, episode reward -21.0, episode length 764
-Time 00h 05m 38s, episode reward -21.0, episode length 764
-Time 00h 06m 53s, episode reward -21.0, episode length 764
-Time 00h 08m 08s, episode reward -21.0, episode length 764
-Time 00h 09m 23s, episode reward -21.0, episode length 764
-Time 00h 10m 38s, episode reward -21.0, episode length 764
-Time 00h 11m 55s, episode reward -21.0, episode length 884
-Time 00h 13m 10s, episode reward -21.0, episode length 764
-Time 00h 14m 24s, episode reward -21.0, episode length 764
-Time 00h 15m 39s, episode reward -21.0, episode length 764
-Time 00h 16m 54s, episode reward -21.0, episode length 764
-Time 00h 18m 09s, episode reward -21.0, episode length 764
-Time 00h 19m 12s, episode reward -3.0, episode length 137
-Time 00h 20m 27s, episode reward -21.0, episode length 764
-Time 00h 21m 44s, episode reward -21.0, episode length 764
-Time 00h 22m 58s, episode reward -21.0, episode length 764
-Time 00h 24m 14s, episode reward -21.0, episode length 764
-Time 00h 25m 28s, episode reward -21.0, episode length 764
-Time 00h 26m 43s, episode reward -21.0, episode length 764
-Time 00h 27m 57s, episode reward -21.0, episode length 764
-Time 00h 29m 13s, episode reward -21.0, episode length 764
-Time 00h 30m 29s, episode reward -21.0, episode length 764
-Time 00h 31m 32s, episode reward -2.0, episode length 119
-Time 00h 32m 47s, episode reward -21.0, episode length 764
-Time 00h 34m 02s, episode reward -21.0, episode length 764
-Time 00h 35m 16s, episode reward -21.0, episode length 764
-Time 00h 36m 30s, episode reward -21.0, episode length 764
-Time 00h 37m 45s, episode reward -21.0, episode length 764
-Time 00h 38m 59s, episode reward -21.0, episode length 764
-Time 00h 40m 14s, episode reward -21.0, episode length 764
-Time 00h 41m 29s, episode reward -21.0, episode length 764
-Time 00h 42m 44s, episode reward -21.0, episode length 764
-Time 00h 43m 58s, episode reward -21.0, episode length 764
-Time 00h 45m 13s, episode reward -21.0, episode length 764
-Time 00h 46m 27s, episode reward -21.0, episode length 764
-Time 00h 47m 41s, episode reward -21.0, episode length 764
-Time 00h 48m 56s, episode reward -21.0, episode length 764
-Time 00h 50m 11s, episode reward -21.0, episode length 764
-Time 00h 51m 25s, episode reward -21.0, episode length 764
-Time 00h 52m 41s, episode reward -21.0, episode length 764
-Time 00h 53m 55s, episode reward -21.0, episode length 764
-Time 00h 55m 10s, episode reward -21.0, episode length 764
-Time 00h 56m 25s, episode reward -21.0, episode length 764
-Time 00h 57m 39s, episode reward -21.0, episode length 764
-Time 00h 58m 54s, episode reward -21.0, episode length 764
-Time 01h 00m 10s, episode reward -21.0, episode length 764
-Time 01h 01m 23s, episode reward -21.0, episode length 764
-Time 01h 02m 37s, episode reward -21.0, episode length 764
-Time 01h 03m 52s, episode reward -21.0, episode length 764
-Time 01h 05m 06s, episode reward -21.0, episode length 764
-Time 01h 06m 20s, episode reward -21.0, episode length 764
-Time 01h 07m 34s, episode reward -21.0, episode length 764
-Time 01h 08m 47s, episode reward -21.0, episode length 764
-Time 01h 10m 01s, episode reward -21.0, episode length 764
-Time 01h 11m 16s, episode reward -21.0, episode length 764
-Time 01h 12m 31s, episode reward -21.0, episode length 764
-Time 01h 13m 47s, episode reward -21.0, episode length 764
-Time 01h 15m 01s, episode reward -21.0, episode length 764
-Time 01h 16m 16s, episode reward -21.0, episode length 764
-Time 01h 17m 31s, episode reward -21.0, episode length 764
-Time 01h 18m 46s, episode reward -21.0, episode length 764
-Time 01h 20m 00s, episode reward -21.0, episode length 764
-Time 01h 21m 15s, episode reward -21.0, episode length 764
-Time 01h 22m 29s, episode reward -21.0, episode length 764
-Time 01h 24m 07s, episode reward -21.0, episode length 2004
-Time 01h 25m 21s, episode reward -21.0, episode length 764
-Time 01h 26m 35s, episode reward -21.0, episode length 764
-Time 01h 27m 49s, episode reward -21.0, episode length 764
-Time 01h 29m 04s, episode reward -21.0, episode length 764
-Time 01h 30m 19s, episode reward -21.0, episode length 764
-Time 01h 31m 34s, episode reward -21.0, episode length 764
-Time 01h 32m 48s, episode reward -21.0, episode length 764
-Time 01h 34m 01s, episode reward -21.0, episode length 764
-Time 01h 35m 16s, episode reward -21.0, episode length 764
-Time 01h 36m 30s, episode reward -21.0, episode length 764
-Time 01h 37m 45s, episode reward -21.0, episode length 764
-Time 01h 39m 00s, episode reward -21.0, episode length 764
-Time 01h 40m 16s, episode reward -21.0, episode length 764
-Time 01h 41m 31s, episode reward -21.0, episode length 764
-Time 01h 42m 47s, episode reward -21.0, episode length 764
+Time 00h 02m 04s, episode reward -21.0, episode length 764
+Time 00h 03m 23s, episode reward -2.0, episode length 118
+Time 00h 06m 23s, episode reward -21.0, episode length 764
+Time 00h 09m 20s, episode reward -21.0, episode length 764
+Time 00h 10m 41s, episode reward -3.0, episode length 134
+Time 00h 13m 46s, episode reward -21.0, episode length 824
+Time 00h 15m 02s, episode reward -2.0, episode length 101
+Time 00h 18m 00s, episode reward -21.0, episode length 764
+Time 00h 20m 54s, episode reward -21.0, episode length 764
+Time 00h 23m 52s, episode reward -21.0, episode length 764
+Time 00h 26m 49s, episode reward -21.0, episode length 764
+Time 00h 29m 47s, episode reward -21.0, episode length 764
+Time 00h 31m 02s, episode reward -2.0, episode length 100
+Time 00h 33m 58s, episode reward -21.0, episode length 764
+Time 00h 36m 54s, episode reward -21.0, episode length 764
+Time 00h 39m 50s, episode reward -21.0, episode length 764
+Time 00h 42m 47s, episode reward -21.0, episode length 764
+Time 00h 45m 43s, episode reward -21.0, episode length 764
+Time 00h 48m 48s, episode reward -21.0, episode length 764
+Time 00h 51m 50s, episode reward -21.0, episode length 764
+Time 00h 54m 49s, episode reward -21.0, episode length 764
+Time 00h 57m 43s, episode reward -21.0, episode length 764
+Time 00h 58m 58s, episode reward 0.0, episode length 101
+Time 01h 01m 55s, episode reward -21.0, episode length 764
+Time 01h 04m 52s, episode reward -21.0, episode length 764
+Time 01h 07m 46s, episode reward -21.0, episode length 764
+Time 01h 09m 02s, episode reward -2.0, episode length 100
+Time 01h 11m 58s, episode reward -21.0, episode length 764
+Time 01h 14m 53s, episode reward -21.0, episode length 764
+Time 01h 17m 47s, episode reward -21.0, episode length 764
+Time 01h 20m 38s, episode reward -21.0, episode length 764
+Time 01h 23m 35s, episode reward -21.0, episode length 764
+Time 01h 26m 32s, episode reward -21.0, episode length 764
+Time 01h 29m 24s, episode reward -21.0, episode length 764
+Time 01h 32m 17s, episode reward -21.0, episode length 764
+Time 01h 35m 11s, episode reward -21.0, episode length 764
+Time 01h 38m 09s, episode reward -21.0, episode length 764
+Time 01h 41m 07s, episode reward -21.0, episode length 764
 Time 01h 44m 02s, episode reward -21.0, episode length 764
-Time 01h 45m 16s, episode reward -21.0, episode length 764
-Time 01h 46m 52s, episode reward -21.0, episode length 1756
-Time 01h 48m 07s, episode reward -21.0, episode length 824
-Time 01h 49m 22s, episode reward -21.0, episode length 764
-Time 01h 50m 37s, episode reward -21.0, episode length 764
-Time 01h 51m 43s, episode reward -3.0, episode length 282
-Time 01h 52m 57s, episode reward -21.0, episode length 764
-Time 01h 54m 13s, episode reward -21.0, episode length 764
-Time 01h 55m 33s, episode reward -19.0, episode length 1116
-Time 01h 56m 48s, episode reward -21.0, episode length 764
-Time 01h 58m 03s, episode reward -21.0, episode length 764
-Time 01h 59m 18s, episode reward -21.0, episode length 764
-Time 02h 00m 33s, episode reward -21.0, episode length 764
-Time 02h 01m 48s, episode reward -21.0, episode length 764
-Time 02h 03m 02s, episode reward -21.0, episode length 794
-Time 02h 04m 16s, episode reward -21.0, episode length 764
-Time 02h 05m 31s, episode reward -21.0, episode length 764
-Time 02h 06m 46s, episode reward -21.0, episode length 764
-Time 02h 08m 00s, episode reward -21.0, episode length 783
-Time 02h 09m 15s, episode reward -21.0, episode length 783
-Time 02h 10m 51s, episode reward -21.0, episode length 1964
-Time 02h 12m 05s, episode reward -21.0, episode length 764
-Time 02h 13m 21s, episode reward -21.0, episode length 842
-Time 02h 14m 36s, episode reward -21.0, episode length 792
-Time 02h 16m 13s, episode reward -21.0, episode length 2004
-Time 02h 17m 48s, episode reward -21.0, episode length 2004
-Time 02h 19m 02s, episode reward -21.0, episode length 764
-Time 02h 20m 17s, episode reward -21.0, episode length 764
-Time 02h 21m 32s, episode reward -21.0, episode length 824
-Time 02h 22m 47s, episode reward -21.0, episode length 764
-Time 02h 24m 01s, episode reward -21.0, episode length 764
-Time 02h 25m 40s, episode reward -21.0, episode length 1966
-Time 02h 26m 54s, episode reward -21.0, episode length 764
-Time 02h 28m 09s, episode reward -21.0, episode length 783
-Time 02h 29m 23s, episode reward -21.0, episode length 764
-Time 02h 30m 59s, episode reward -21.0, episode length 1864
-Time 02h 32m 33s, episode reward -21.0, episode length 1862
-Time 02h 34m 13s, episode reward -21.0, episode length 2244
-Time 02h 35m 50s, episode reward -21.0, episode length 1964
-Time 02h 37m 15s, episode reward -21.0, episode length 1440
-Time 02h 38m 30s, episode reward -21.0, episode length 824
-Time 02h 39m 51s, episode reward -21.0, episode length 1176
-Time 02h 41m 24s, episode reward -21.0, episode length 1803
-Time 02h 42m 38s, episode reward -21.0, episode length 764
-Time 02h 44m 15s, episode reward -21.0, episode length 1964
-Time 02h 45m 31s, episode reward -21.0, episode length 852
-Time 02h 46m 45s, episode reward -21.0, episode length 764
-Time 02h 48m 21s, episode reward -21.0, episode length 1964
-Time 02h 49m 56s, episode reward -21.0, episode length 1964
-Time 02h 51m 10s, episode reward -21.0, episode length 764
-Time 02h 52m 30s, episode reward -21.0, episode length 1044
-Time 02h 53m 47s, episode reward -20.0, episode length 932
-Time 02h 55m 01s, episode reward -21.0, episode length 764
-Time 02h 56m 37s, episode reward -21.0, episode length 1964v_loss 0.2709330428 r_loss 0.228180768256
-v_loss 0.207402945918 r_loss 0.229190043789
-v_loss 0.200931655804 r_loss 0.0294685709762
-v_loss 0.310183185323 r_loss 0.104414212739
-v_loss 0.188714527614 r_loss 0.01797195278
-v_loss 0.166339588882 r_loss 0.164738427537
-v_loss 0.0766005950187 r_loss 0.0266974690166
-v_loss 0.122080398946 r_loss 0.0062078101846
-v_loss 0.0948538791358 r_loss 0.0739500832487
-v_loss 0.39043692361 r_loss 0.0153541057342
-v_loss 0.51599069188 r_loss 0.226446097877
-v_loss 0.468224374639 r_loss 0.0473726856253
-v_loss 0.150011587532 r_loss 0.00855585317838
-v_loss 0.156533516101 r_loss 0.0273098935355
-v_loss 1.06313284728 r_loss 0.0915698472801
-v_loss 0.206656740098 r_loss 0.0123312204888
-v_loss 0.204670492497 r_loss 0.0551170000238
-v_loss 0.459752369912 r_loss 0.098552327332
-v_loss 0.0510996413834 r_loss 0.00804669623809
-v_loss 0.0867033120949 r_loss 0.0146557598886
-v_loss 0.744235433255 r_loss 0.02248345382
-v_loss 0.487926783344 r_loss 0.0906992972936
-v_loss 0.0918750408786 r_loss 0.0178041861761
-v_loss 0.0893195607393 r_loss 0.0972167467505
-v_loss 0.237401092096 r_loss 0.0156708803338
-v_loss 0.0855517452546 r_loss 0.0195015396887
-v_loss 0.426138528578 r_loss 0.0129744107074
-v_loss 0.0494583681446 r_loss 0.01434135941
-v_loss 0.270872100444 r_loss 0.0303703679439
-v_loss 0.294493275045 r_loss 0.259892509779
-v_loss 0.107067505612 r_loss 0.0219671369317
-v_loss 0.422627017351 r_loss 0.0404416310179
-v_loss 0.139832791598 r_loss 0.0349074598803
-v_loss 0.749360330414 r_loss 0.0105404983885
-v_loss 0.14627299087 r_loss 0.0261689021841
-v_loss 0.563922800377 r_loss 0.0231455450918
-v_loss 0.35777820682 r_loss 0.0210053403704
-v_loss 0.589188713851 r_loss 0.233939299423
-v_loss 0.161895591637 r_loss 0.0206264800738
-v_loss 0.106581638237 r_loss 0.0319448864826
-v_loss 0.250694990358 r_loss 0.0328296052714
-v_loss 0.0662146778232 r_loss 0.0195954082181
-v_loss 0.0539382020292 r_loss 0.0273453133119
-v_loss 0.332546065712 r_loss 0.0308336774862
-v_loss 0.195613449865 r_loss 0.0480890944154
-v_loss 0.269438106021 r_loss 0.13284080621
-v_loss 0.233039199228 r_loss 0.0208495572146
-v_loss 0.0863796129343 r_loss 0.0111039359854
-v_loss 0.276085444454 r_loss 0.0183622642029
-v_loss 0.385930297446 r_loss 0.00470875388833
-v_loss 0.132281071828 r_loss 0.0311465387769
-v_loss 0.135997443148 r_loss 0.0106157484413
-v_loss 0.199711953168 r_loss 0.0209040679077
-v_loss 0.419358489463 r_loss 0.0169398263181
-v_loss 0.154914300043 r_loss 0.0388694861377
-v_loss 0.450288919275 r_loss 0.0368260858481
-v_loss 0.253883490527 r_loss 0.0071391015559
-v_loss 0.142739349426 r_loss 0.0113411645445
-v_loss 0.222190221287 r_loss 0.0284777245723
-v_loss 0.143687338888 r_loss 0.182167789598
-v_loss 0.289254383053 r_loss 0.152897709727
-v_loss 0.194519531998 r_loss 0.0129721272001
-v_loss 0.0918796275952 r_loss 0.0121409308899
-v_loss 0.398777572853 r_loss 0.167477007714
-v_loss 0.0465864185415 r_loss 0.0149374059906
-v_loss 0.180835816962 r_loss 0.0132386037621
-v_loss 0.409453881995 r_loss 0.0425950499769
-v_loss 0.106514253123 r_loss 0.0118657305424
-v_loss 0.0738645327313 r_loss 0.01233184079
-v_loss 0.296067510755 r_loss 0.0135428244113
-v_loss 0.46853754237 r_loss 0.0459127465214
-v_loss 0.122229183213 r_loss 0.0116632846601
-v_loss 0.0725832957337 r_loss 0.00763630940063
-v_loss 0.0393054800287 r_loss 0.00778987351898
-v_loss 0.226794825871 r_loss 0.00845245118605
-v_loss 0.191006634951 r_loss 0.0207248940748
-v_loss 0.254692041629 r_loss 0.13943325544
-v_loss 0.524203099923 r_loss 0.234856037329
-v_loss 0.360461132284 r_loss 0.0212500164556
-v_loss 0.299158432318 r_loss 0.00756069380198
-v_loss 0.133389458848 r_loss 0.0214660936662
-v_loss 0.549384837508 r_loss 0.0739655253894
-v_loss 0.176533750679 r_loss 0.0270337297915
-v_loss 0.190514310704 r_loss 0.0141879953283
-v_loss 0.151798633823 r_loss 0.0249365872363
-v_loss 0.146550499341 r_loss 0.189489230881
-v_loss 0.0416535426895 r_loss 0.0165770251146
-v_loss 0.0737908126265 r_loss 0.00849739983149
-v_loss 0.147203467306 r_loss 0.0189619808244
-v_loss 0.0491962861755 r_loss 0.00717761454725
-v_loss 0.288004763644 r_loss 0.0670447661784
-v_loss 0.128895383435 r_loss 0.120259293503
-v_loss 0.0440165798838 r_loss 0.0219412210031
-v_loss 0.159343565737 r_loss 0.02102539906
-v_loss 0.734808305805 r_loss 0.0282532421464
-v_loss 0.102212342986 r_loss 0.0191104606159
-v_loss 0.330115873019 r_loss 0.0188836293891
-v_loss 0.706040173155 r_loss 0.024424881957
-v_loss 0.555791850338 r_loss 0.166736213496
-v_loss 0.495605329494 r_loss 0.0132208506793
-v_loss 0.0741148738651 r_loss 0.0197343544201
-v_loss 0.345568566173 r_loss 0.019988741885
-v_loss 0.174845133642 r_loss 0.00741676267208
-v_loss 0.407585676772 r_loss 0.0162033479349
-v_loss 0.248619215002 r_loss 0.124115253541
-v_loss 0.0720146600199 r_loss 0.0222646236928
-v_loss 0.621539316817 r_loss 0.191211806757
-v_loss 0.48008589807 r_loss 0.0148700386219
-v_loss 0.0705133176698 r_loss 0.0270163625694
-v_loss 0.162754154553 r_loss 0.0175202259022
-v_loss 0.288945760075 r_loss 0.0888033331055
-v_loss 0.444205710083 r_loss 0.0136068709956
-v_loss 0.0782885930033 r_loss 0.0108781937173
-v_loss 0.107699406538 r_loss 0.0208545860841
-v_loss 0.468840954974 r_loss 0.120606916348
-v_loss 0.363269148695 r_loss 0.0169964295231
-v_loss 0.501207516508 r_loss 0.0524320845442
-v_loss 0.358722597978 r_loss 0.0270635952499
-v_loss 0.214802578962 r_loss 0.0525374224506
-v_loss 0.195137711331 r_loss 0.015699707922
-v_loss 0.130736795785 r_loss 0.0142858462967
-v_loss 0.69271254403 r_loss 0.0115369650994
-v_loss 0.152748555081 r_loss 0.017655799385
-v_loss 0.0136098614502 r_loss 0.0130541074471
-v_loss 0.708486597508 r_loss 0.0144413103459
-v_loss 0.450163294442 r_loss 0.0724588847825
-v_loss 0.343000614223 r_loss 0.118316150923
-v_loss 0.0726427499995 r_loss 0.0127116599733
-v_loss 0.0311998028983 r_loss 0.0235981651156
-v_loss 1.411034394 r_loss 0.0112510635476
-v_loss 0.0993926660215 r_loss 0.0235116999877
-v_loss 0.254081856855 r_loss 0.0107863098965
-v_loss 0.482144013271 r_loss 0.0257530451556
-v_loss 0.192541528665 r_loss 0.0261760962978
-v_loss 0.129469028861 r_loss 0.0189876960602
-v_loss 0.131880597834 r_loss 0.0175680953593
-v_loss 0.34628153438 r_loss 0.170833526598
-v_loss 0.103578186828 r_loss 0.00934764540962
-v_loss 0.107285574024 r_loss 0.034116335791
-v_loss 0.388591907114 r_loss 0.00742062974735
-v_loss 0.731057803233 r_loss 0.0200446149051
-v_loss 0.0698407017629 r_loss 0.0265895693766
-v_loss 0.115946961853 r_loss 0.0207644682979
-v_loss 0.419316675366 r_loss 0.0264731353614
-v_loss 0.144335154762 r_loss 0.0190268649137
-v_loss 0.090537597824 r_loss 0.0172248076468
-v_loss 0.281322878789 r_loss 0.0263208449259
-v_loss 0.216454955128 r_loss 0.0166720856256
-v_loss 0.153575004066 r_loss 0.019417946351
-v_loss 0.157349442758 r_loss 0.0162788537524
-v_loss 0.0844830045444 r_loss 0.0189505409978
-v_loss 0.130503532004 r_loss 0.0139837884149
-v_loss 0.166462871953 r_loss 0.0181445883972
-v_loss 0.557498071178 r_loss 0.199645896779
-v_loss 0.775960325315 r_loss 0.146155089508
-v_loss 0.0909925725889 r_loss 0.0241039124706
-v_loss 0.332598361145 r_loss 0.0066611206939
-v_loss 0.171386316058 r_loss 0.0145176531843
-v_loss 0.170705328808 r_loss 0.0826753614114
-v_loss 0.368819633032 r_loss 0.00814801268625
-v_loss 0.495636623077 r_loss 0.0270914531484
-v_loss 0.0543228675557 r_loss 0.0120246257437
-v_loss 0.19045110214 r_loss 0.00550432798158
-v_loss 0.620322516277 r_loss 0.2325132908
-v_loss 0.403104457698 r_loss 0.0195812818614
-v_loss 0.400085839882 r_loss 0.0360858801635
-v_loss 0.269488663247 r_loss 0.0212073082096
-v_loss 0.0738981159687 r_loss 0.0079166583099
-v_loss 0.247296252159 r_loss 0.0091058453046
-v_loss 0.231150281595 r_loss 0.197872910387
-v_loss 0.269525601124 r_loss 0.190663916691
-v_loss 0.0755081639218 r_loss 0.0190270462772
-v_loss 0.642381407609 r_loss 0.0417926156319
-v_loss 0.413281560105 r_loss 0.206888327084
-v_loss 0.533610356898 r_loss 0.16670523214
-v_loss 0.0984448896761 r_loss 0.0222406587263
-v_loss 0.187930689766 r_loss 0.274092979848
-v_loss 0.566221334616 r_loss 0.0238783597848
-v_loss 0.614151970296 r_loss 0.0228372908812
-v_loss 0.810593895606 r_loss 0.19666879
-v_loss 0.248883430903 r_loss 0.126344425737
-v_loss 0.309999777228 r_loss 0.0121834085609
-v_loss 0.512477909864 r_loss
-Time 02h 57m 51s, episode reward -21.0, episode length 764
-Time 02h 59m 07s, episode reward -21.0, episode length 824
-Time 03h 00m 45s, episode reward -21.0, episode length 1904
-Time 03h 02m 21s, episode reward -21.0, episode length 1964
-Time 03h 03m 57s, episode reward -21.0, episode length 1964
-Time 03h 05m 11s, episode reward -21.0, episode length 764
-Time 03h 06m 33s, episode reward -21.0, episode length 1106
-Time 03h 08m 01s, episode reward -21.0, episode length 1376
-Time 03h 09m 31s, episode reward -21.0, episode length 1575
-Time 03h 10m 45s, episode reward -21.0, episode length 764
-Time 03h 12m 00s, episode reward -21.0, episode length 852
-Time 03h 13m 31s, episode reward -21.0, episode length 1616
-Time 03h 14m 59s, episode reward -21.0, episode length 1544
-Time 03h 16m 37s, episode reward -21.0, episode length 2024
-Time 03h 18m 05s, episode reward -21.0, episode length 1598
-Time 03h 19m 53s, episode reward -21.0, episode length 2524
-Time 03h 21m 10s, episode reward -19.0, episode length 937
-Time 03h 22m 37s, episode reward -21.0, episode length 1514
-Time 03h 24m 01s, episode reward -20.0, episode length 1283
-Time 03h 25m 27s, episode reward -21.0, episode length 1424
-Time 03h 26m 54s, episode reward -21.0, episode length 1558
-Time 03h 28m 13s, episode reward -21.0, episode length 970
-Time 03h 29m 54s, episode reward -21.0, episode length 2294
-Time 03h 31m 14s, episode reward -19.0, episode length 1127
-Time 03h 32m 34s, episode reward -21.0, episode length 1084
-Time 03h 33m 59s, episode reward -21.0, episode length 1412
-Time 03h 35m 18s, episode reward -20.0, episode length 1024
-Time 03h 36m 53s, episode reward -21.0, episode length 1964
-Time 03h 38m 15s, episode reward -21.0, episode length 1256
-Time 03h 39m 40s, episode reward -20.0, episode length 1382
-Time 03h 40m 54s, episode reward -21.0, episode length 824
-Time 03h 42m 28s, episode reward -21.0, episode length 1828
-Time 03h 44m 10s, episode reward -21.0, episode length 2188
-Time 03h 45m 34s, episode reward -21.0, episode length 1352
-Time 03h 46m 52s, episode reward -21.0, episode length 944
-Time 03h 48m 30s, episode reward -21.0, episode length 2004
-Time 03h 49m 48s, episode reward -20.0, episode length 926
-Time 03h 51m 19s, episode reward -18.0, episode length 1788
-Time 03h 52m 48s, episode reward -19.0, episode length 1660
-Time 03h 54m 19s, episode reward -20.0, episode length 1685
-Time 03h 55m 52s, episode reward -21.0, episode length 1780
-Time 03h 57m 06s, episode reward -21.0, episode length 764
-Time 03h 58m 43s, episode reward -21.0, episode length 2004
-Time 04h 00m 18s, episode reward -21.0, episode length 2004
-Time 04h 01m 54s, episode reward -19.0, episode length 2016
-Time 04h 03m 17s, episode reward -20.0, episode length 1262
-Time 04h 04m 33s, episode reward -20.0, episode length 888
-Time 04h 05m 50s, episode reward -20.0, episode length 949
-Time 04h 07m 19s, episode reward -21.0, episode length 1504
-Time 04h 08m 54s, episode reward -21.0, episode length 1924
-Time 04h 10m 31s, episode reward -21.0, episode length 1868
-Time 04h 11m 53s, episode reward -19.0, episode length 1251
-Time 04h 13m 33s, episode reward -21.0, episode length 2244
-Time 04h 15m 06s, episode reward -19.0, episode length 1803
-Time 04h 16m 29s, episode reward -20.0, episode length 1220
-Time 04h 17m 54s, episode reward -20.0, episode length 1382
-Time 04h 19m 18s, episode reward -21.0, episode length 1232
-Time 04h 20m 53s, episode reward -21.0, episode length 1996
-Time 04h 22m 27s, episode reward -21.0, episode length 1924
-Time 04h 24m 02s, episode reward -19.0, episode length 1973
-Time 04h 25m 36s, episode reward -21.0, episode length 1886
-Time 04h 27m 01s, episode reward -20.0, episode length 1363
-Time 04h 28m 30s, episode reward -21.0, episode length 1648
-Time 04h 29m 57s, episode reward -20.0, episode length 1460
-Time 04h 31m 53s, episode reward -21.0, episode length 3152
-Time 04h 33m 27s, episode reward -21.0, episode length 1964
-Time 04h 34m 43s, episode reward -21.0, episode length 824
-Time 04h 36m 12s, episode reward -21.0, episode length 1627
-Time 04h 37m 44s, episode reward -17.0, episode length 1803
-Time 04h 39m 26s, episode reward -21.0, episode length 2162
-Time 04h 40m 51s, episode reward -21.0, episode length 1392
-Time 04h 42m 05s, episode reward -21.0, episode length 783
-Time 04h 43m 50s, episode reward -14.0, episode length 2541
-Time 04h 45m 18s, episode reward -20.0, episode length 1528
-Time 04h 46m 58s, episode reward -15.0, episode length 2255
-Time 04h 48m 13s, episode reward -21.0, episode length 820
-Time 04h 49m 33s, episode reward -20.0, episode length 991
-Time 04h 51m 08s, episode reward -18.0, episode length 2005
-Time 04h 52m 44s, episode reward -21.0, episode length 2012
-Time 04h 53m 58s, episode reward -21.0, episode length 764
-Time 04h 55m 32s, episode reward -18.0, episode length 1901
-Time 04h 57m 01s, episode reward -20.0, episode length 1622
-Time 04h 58m 28s, episode reward -21.0, episode length 1352
-Time 05h 00m 17s, episode reward -17.0, episode length 2669
-Time 05h 01m 48s, episode reward -21.0, episode length 1686
-Time 05h 03m 18s, episode reward -18.0, episode length 1733
-Time 05h 04m 44s, episode reward -21.0, episode length 1454
-Time 05h 06m 26s, episode reward -19.0, episode length 2387
-Time 05h 08m 06s, episode reward -21.0, episode length 2214
-Time 05h 09m 39s, episode reward -21.0, episode length 1964
-Time 05h 11m 28s, episode reward -10.0, episode length 2652
-Time 05h 13m 01s, episode reward -17.0, episode length 1840
-Time 05h 14m 47s, episode reward -12.0, episode length 2367
-Time 05h 16m 43s, episode reward -21.0, episode length 3062
-Time 05h 18m 22s, episode reward -18.0, episode length 1981
-Time 05h 19m 50s, episode reward -20.0, episode length 1400
-Time 05h 21m 42s, episode reward -7.0, episode length 2904
-Time 05h 23m 31s, episode reward -14.0, episode length 2579
-Time 05h 25m 12s, episode reward -21.0, episode length 2248
-Time 05h 26m 55s, episode reward -16.0, episode length 2347
-Time 05h 28m 32s, episode reward -21.0, episode length 2012
-Time 05h 29m 52s, episode reward -19.0, episode length 1088
-Time 05h 31m 26s, episode reward -17.0, episode length 1870
-Time 05h 33m 35s, episode reward -18.0, episode length 3883
-Time 05h 35m 15s, episode reward -13.0, episode length 2311
-Time 05h 36m 43s, episode reward -20.0, episode length 1530
-Time 05h 38m 25s, episode reward -19.0, episode length 2354
-Time 05h 40m 04s, episode reward -12.0, episode length 2116
-Time 05h 41m 49s, episode reward -19.0, episode length 2486
-Time 05h 43m 46s, episode reward -5.0, episode length 3187
-Time 05h 45m 01s, episode reward -21.0, episode length 792
-Time 05h 46m 38s, episode reward -20.0, episode length 2028
-Time 05h 48m 01s, episode reward -20.0, episode length 1252
-Time 05h 50m 03s, episode reward -4.0, episode length 3387
-Time 05h 52m 10s, episode reward -4.0, episode length 3518
-Time 05h 53m 46s, episode reward -19.0, episode length 2038
-Time 05h 55m 34s, episode reward -14.0, episode length 2576
-Time 05h 57m 21s, episode reward -19.0, episode length 2504
-Time 05h 58m 52s, episode reward -19.0, episode length 1739
-Time 06h 00m 31s, episode reward -17.0, episode length 2221
-Time 06h 02m 19s, episode reward -21.0, episode length 2692
-Time 06h 03m 34s, episode reward -21.0, episode length 793
-Time 06h 05m 11s, episode reward -20.0, episode length 2060
-Time 06h 06m 47s, episode reward -21.0, episode length 1984
-Time 06h 08m 11s, episode reward -20.0, episode length 1376
-Time 06h 09m 25s, episode reward -21.0, episode length 764
-Time 06h 11m 15s, episode reward -14.0, episode length 2765
-Time 06h 13m 07s, episode reward -15.0, episode length 2974
-Time 06h 15m 03s, episode reward -6.0, episode length 3078
-Time 06h 16m 54s, episode reward -13.0, episode length 2826
-Time 06h 18m 22s, episode reward -20.0, episode length 1544
-Time 06h 20m 09s, episode reward -21.0, episode length 2553
-Time 06h 21m 32s, episode reward -20.0, episode length 1178
-Time 06h 23m 21s, episode reward -14.0, episode length 2642
-Time 06h 25m 07s, episode reward -12.0, episode length 2575
-Time 06h 26m 59s, episode reward -17.0, episode length 2973
-Time 06h 29m 06s, episode reward -2.0, episode length 3827
-Time 06h 30m 56s, episode reward -15.0, episode length 2840
-Time 06h 32m 43s, episode reward -16.0, episode length 2735
-Time 06h 34m 14s, episode reward -21.0, episode length 1715
-Time 06h 35m 37s, episode reward -18.0, episode length 1215
-Time 06h 37m 16s, episode reward -19.0, episode length 2248
-Time 06h 38m 52s, episode reward -21.0, episode length 2030
-Time 06h 40m 16s, episode reward -18.0, episode length 1300
-Time 06h 41m 57s, episode reward -18.0, episode length 2194
-Time 06h 43m 43s, episode reward -9.0, episode length 2521
-Time 06h 45m 39s, episode reward -4.0, episode length 3089
-Time 06h 47m 33s, episode reward -5.0, episode length 3026
-Time 06h 49m 28s, episode reward -5.0, episode length 3169
-Time 06h 50m 43s, episode reward -21.0, episode length 764
-Time 06h 52m 24s, episode reward -15.0, episode length 2327
-Time 06h 54m 30s, episode reward -7.0, episode length 3673
-Time 06h 56m 16s, episode reward -6.0, episode length 2688
-Time 06h 57m 54s, episode reward -16.0, episode length 2086
-Time 06h 59m 43s, episode reward -4.0, episode length 2846
-Time 07h 01m 40s, episode reward -5.0, episode length 3159
-Time 07h 02m 57s, episode reward -20.0, episode length 916
-Time 07h 04m 47s, episode reward 7.0, episode length 2844
-Time 07h 06m 44s, episode reward -7.0, episode length 3114
-Time 07h 08m 54s, episode reward -2.0, episode length 3984
-Time 07h 10m 48s, episode reward 2.0, episode length 3042
-Time 07h 12m 40s, episode reward 1.0, episode length 2989
-Time 07h 14m 18s, episode reward -16.0, episode length 2131
-Time 07h 16m 11s, episode reward 5.0, episode length 2732
-Time 07h 18m 12s, episode reward -2.0, episode length 3244
-Time 07h 19m 26s, episode reward -21.0, episode length 825
-Time 07h 21m 21s, episode reward -9.0, episode length 3263
-Time 07h 22m 55s, episode reward -21.0, episode length 2004
-Time 07h 24m 47s, episode reward 2.0, episode length 3062
-Time 07h 26m 24s, episode reward 13.0, episode length 2065
-Time 07h 28m 23s, episode reward -4.0, episode length 3376
-Time 07h 30m 24s, episode reward -4.0, episode length 3463
-Time 07h 32m 15s, episode reward 4.0, episode length 3028
-Time 07h 34m 07s, episode reward 10.0, episode length 2850
-Time 07h 36m 02s, episode reward 1.0, episode length 3180
-Time 07h 38m 03s, episode reward -2.0, episode length 3493
-Time 07h 39m 45s, episode reward -7.0, episode length 2431
-Time 07h 41m 40s, episode reward -1.0, episode length 3204
-Time 07h 43m 43s, episode reward -1.0, episode length 3536
-Time 07h 45m 31s, episode reward -4.0, episode length 2757
-Time 07h 47m 03s, episode reward -16.0, episode length 1768
-Time 07h 48m 58s, episode reward 3.0, episode length 3165
-Time 07h 50m 30s, episode reward 19.0, episode length 1829
-Time 07h 52m 34s, episode reward -1.0, episode length 3744
-Time 07h 54m 23s, episode reward -20.0, episode length 2706
-Time 07h 55m 49s, episode reward -21.0, episode length 1558
-Time 07h 57m 39s, episode reward 4.0, episode length 2861
-Time 07h 59m 27s, episode reward 5.0, episode length 2794
-Time 08h 01m 13s, episode reward 8.0, episode length 2709
-Time 08h 03m 02s, episode reward -7.0, episode length 2816
-Time 08h 04m 32s, episode reward 20.0, episode length 1672
-Time 08h 06m 11s, episode reward 14.0, episode length 2164
-Time 08h 07m 54s, episode reward 9.0, episode length 2462
-Time 08h 09m 26s, episode reward 20.0, episode length 1668
-Time 08h 11m 01s, episode reward 18.0, episode length 1966
-Time 08h 12m 21s, episode reward -18.0, episode length 1087
-Time 08h 14m 00s, episode reward 13.0, episode length 2071
-Time 08h 15m 46s, episode reward 10.0, episode length 2640
-Time 08h 17m 39s, episode reward 15.0, episode length 2758
-Time 08h 18m 55s, episode reward -21.0, episode length 764
-Time 08h 20m 26s, episode reward 20.0, episode length 1668
-Time 08h 21m 56s, episode reward 20.0, episode length 1668
-Time 08h 23m 26s, episode reward 20.0, episode length 1668
-The test thread has been stopped
-5th thread has been stopped
-12th thread has been stopped
-26th thread has been stopped
-13th thread has been stopped
-31th thread has been stopped
-8th thread has been stopped
-7th thread has been stopped
-9th thread has been stopped
-18th thread has been stopped
-17th thread has been stopped
-30th thread has been stopped
-22th thread has been stopped
-10th thread has been stopped
-14th thread has been stopped
-3th thread has been stopped
-6th thread has been stopped
-24th thread has been stopped
-20th thread has been stopped
-23th thread has been stopped
-29th thread has been stopped
- 0.157898123186
-v_loss 0.080296650404 r_loss 0.0174617401924
-v_loss 0.154606227153 r_loss 0.00909565923368
-v_loss 0.200466326773 r_loss 0.24769255564
-v_loss 0.338527881995 r_loss 0.0418959749226
-v_loss 0.4787468253 r_loss 0.133236321074
-v_loss 0.0403974843718 r_loss 0.0992127264002
-v_loss 0.921132296987 r_loss 0.0953673719606
-v_loss 0.555948515556 r_loss 0.0260853902941
-v_loss 0.64152980726 r_loss 0.0178537712882
-v_loss 0.19333975363 r_loss 0.0702186216535
-v_loss 0.207980352157 r_loss 0.120432713549
-v_loss 0.0463123348593 r_loss 0.0156496395787
-v_loss 0.107428182754 r_loss 0.0126833176673
-v_loss 0.114731917408 r_loss 0.0124165409054
-v_loss 0.545252116249 r_loss 0.0167148400004
-v_loss 0.385749756165 r_loss 0.0152525655483
-v_loss 0.169309465991 r_loss 0.0071340768147
-v_loss 0.0347494304588 r_loss 0.0177409516288
-v_loss 0.0841290128441 r_loss 0.0161924603196
-v_loss 0.475068157375 r_loss 0.0036886461506
-v_loss 0.0485252193798 r_loss 0.0156351886123
-v_loss 0.248679740566 r_loss 0.0101225475244
-v_loss 0.503163735249 r_loss 0.0147246197219
-v_loss 0.187373369522 r_loss 0.0548398969651
-v_loss 0.484902164653 r_loss 0.137354100163
-v_loss 0.384071778298 r_loss 0.0165350464293
-v_loss 0.574813045367 r_loss 0.145643888101
-v_loss 0.103201147598 r_loss 0.0212317608722
-v_loss 0.484220038487 r_loss 0.231454725882
-v_loss 0.128373679987 r_loss 0.0100536325754
-v_loss 0.12236269979 r_loss 0.019038576348
-v_loss 0.108286380503 r_loss 0.00856622946688
-v_loss 0.124716512558 r_loss 0.0211018755496
-v_loss 0.0796083144148 r_loss 0.0155745948103
-v_loss 0.317051636426 r_loss 0.0185412013249
-v_loss 0.312318782799 r_loss 0.0831746219633
-v_loss 0.135314946961 r_loss 0.0203643230415
-v_loss 0.190900386135 r_loss 0.00436176705076
-v_loss 0.488661464495 r_loss 0.00601661664395
-v_loss 0.35527487197 r_loss 0.0208384149611
-v_loss 0.0958332470589 r_loss 0.00606773688677
-v_loss 0.194585728924 r_loss 0.133993605348
-v_loss 0.0467753787827 r_loss 0.00642397042842
-v_loss 0.200920060434 r_loss 0.0260764837581
-v_loss 0.207134495094 r_loss 0.0386484207829
-v_loss 0.135230671542 r_loss 0.158151337771
-v_loss 0.418430896607 r_loss 0.191049754165
-v_loss 0.234445679475 r_loss 0.0174693600881
-v_loss 0.562467369635 r_loss 0.0186955788752
-v_loss 0.0660654877412 r_loss 0.0252453021075
-v_loss 0.0716432492745 r_loss 0.0266219050572
-v_loss 0.171799212574 r_loss 0.0128352686761
-v_loss 0.359606961157 r_loss 0.013898413443
-v_loss 0.237710650818 r_loss 0.0162637524706
-v_loss 0.0550823015009 r_loss 0.0182273339902
-v_loss 0.610042479306 r_loss 0.0223134287025
-0th thread has been stopped
-28th thread has been stopped
-16th thread has been stopped
-25th thread has been stopped
-1th thread has been stopped
-27th thread has been stopped
-21th thread has been stopped
-19th thread has been stopped
-2th thread has been stopped
-4th thread has been stopped
-11th thread has been stopped
+Time 01h 46m 54s, episode reward -21.0, episode length 764
+Time 01h 49m 47s, episode reward -21.0, episode length 764
+Time 01h 52m 42s, episode reward -21.0, episode length 764
+Time 01h 55m 40s, episode reward -21.0, episode length 764
+Time 01h 58m 33s, episode reward -21.0, episode length 764
+Time 02h 01m 29s, episode reward -21.0, episode length 764
+Time 02h 04m 20s, episode reward -21.0, episode length 764
+Time 02h 07m 15s, episode reward -21.0, episode length 764
+Time 02h 12m 51s, episode reward -21.0, episode length 1880
+Time 02h 15m 44s, episode reward -21.0, episode length 764
+Time 02h 18m 39s, episode reward -21.0, episode length 764
+Time 02h 21m 29s, episode reward -21.0, episode length 764
+Time 02h 24m 26s, episode reward -21.0, episode length 764
+Time 02h 27m 27s, episode reward -21.0, episode length 764
+Time 02h 30m 22s, episode reward -21.0, episode length 764
+Time 02h 36m 24s, episode reward -21.0, episode length 1964
+Time 02h 39m 18s, episode reward -21.0, episode length 764
+Time 02h 42m 12s, episode reward -21.0, episode length 764
+Time 02h 45m 02s, episode reward -21.0, episode length 764
+Time 02h 47m 55s, episode reward -21.0, episode length 764
+Time 02h 50m 49s, episode reward -21.0, episode length 764
+Time 02h 53m 42s, episode reward -21.0, episode length 764
+Time 02h 56m 35s, episode reward -21.0, episode length 764
+Time 02h 59m 27s, episode reward -21.0, episode length 764
+Time 03h 02m 20s, episode reward -21.0, episode length 764
+Time 03h 05m 24s, episode reward -21.0, episode length 826
+Time 03h 08m 16s, episode reward -21.0, episode length 764
+Time 03h 11m 09s, episode reward -21.0, episode length 764
+Time 03h 14m 02s, episode reward -21.0, episode length 764
+Time 03h 17m 06s, episode reward -21.0, episode length 826
+Time 03h 19m 57s, episode reward -21.0, episode length 764
+Time 03h 22m 49s, episode reward -21.0, episode length 764
+Time 03h 25m 47s, episode reward -21.0, episode length 792
+Time 03h 28m 46s, episode reward -21.0, episode length 811
+Time 03h 33m 02s, episode reward -21.0, episode length 1352
+Time 03h 35m 59s, episode reward -21.0, episode length 811
+Time 03h 42m 15s, episode reward -21.0, episode length 2160
+Time 03h 45m 15s, episode reward -21.0, episode length 824
+Time 03h 48m 41s, episode reward -20.0, episode length 1005
+Time 03h 54m 29s, episode reward -21.0, episode length 1964
+Time 03h 59m 13s, episode reward -21.0, episode length 1528
+Time 04h 02m 09s, episode reward -21.0, episode length 764
+Time 04h 08m 40s, episode reward -21.0, episode length 2244
+Time 04h 11m 44s, episode reward -21.0, episode length 826
+Time 04h 17m 15s, episode reward -21.0, episode length 1863
+Time 04h 21m 43s, episode reward -21.0, episode length 1424
+Time 04h 26m 06s, episode reward -21.0, episode length 1392
+Time 04h 31m 53s, episode reward -21.0, episode length 1964
+Time 04h 34m 44s, episode reward -21.0, episode length 764
+Time 04h 38m 15s, episode reward -21.0, episode length 1028
+Time 04h 41m 46s, episode reward -21.0, episode length 992
+Time 04h 47m 42s, episode reward -21.0, episode length 2004
+Time 04h 50m 41s, episode reward -21.0, episode length 824
+Time 04h 56m 29s, episode reward -21.0, episode length 1964
+Time 04h 59m 20s, episode reward -21.0, episode length 764
+Time 05h 04m 12s, episode reward -20.0, episode length 1623
+Time 05h 08m 35s, episode reward -20.0, episode length 1378
+Time 05h 11m 27s, episode reward -21.0, episode length 764
+Time 05h 14m 26s, episode reward -21.0, episode length 824
+Time 05h 17m 30s, episode reward -20.0, episode length 842
+Time 05h 20m 21s, episode reward -21.0, episode length 764
+Time 05h 23m 31s, episode reward -21.0, episode length 890
+Time 05h 27m 43s, episode reward -21.0, episode length 1332
+Time 05h 31m 35s, episode reward -21.0, episode length 1184
+Time 05h 37m 53s, episode reward -19.0, episode length 2172
+Time 05h 43m 05s, episode reward -16.0, episode length 1718
+Time 05h 49m 24s, episode reward -21.0, episode length 2186
+Time 05h 55m 12s, episode reward -21.0, episode length 1964
+Time 05h 59m 40s, episode reward -20.0, episode length 1427
+Time 06h 02m 31s, episode reward -21.0, episode length 764
+Time 06h 08m 21s, episode reward -20.0, episode length 2001
+Time 06h 12m 37s, episode reward -21.0, episode length 1392
+Time 06h 16m 32s, episode reward -21.0, episode length 1205
+Time 06h 22m 55s, episode reward -21.0, episode length 2254
+Time 06h 28m 11s, episode reward -18.0, episode length 1720
+Time 06h 33m 23s, episode reward -21.0, episode length 1693
+Time 06h 39m 01s, episode reward -21.0, episode length 1904
+Time 06h 42m 38s, episode reward -20.0, episode length 1098
+Time 06h 45m 45s, episode reward -21.0, episode length 872
+Time 06h 48m 54s, episode reward -20.0, episode length 917
+Time 06h 52m 43s, episode reward -21.0, episode length 1142
+Time 06h 55m 59s, episode reward -20.0, episode length 938
+Time 07h 00m 23s, episode reward -20.0, episode length 1407
+Time 07h 06m 07s, episode reward -21.0, episode length 1964
+Time 07h 09m 08s, episode reward -21.0, episode length 824
+Time 07h 12m 07s, episode reward -20.0, episode length 842
+Time 07h 17m 52s, episode reward -20.0, episode length 1921
+Time 07h 21m 07s, episode reward -21.0, episode length 944
+Time 07h 25m 30s, episode reward -18.0, episode length 1399
+Time 07h 30m 55s, episode reward -21.0, episode length 1872
+Time 07h 35m 12s, episode reward -21.0, episode length 1360
+Time 07h 38m 21s, episode reward -20.0, episode length 902
+Time 07h 42m 43s, episode reward -21.0, episode length 1424
+Time 07h 47m 12s, episode reward -21.0, episode length 1472
+Time 07h 51m 27s, episode reward -21.0, episode length 1364
+Time 07h 56m 54s, episode reward -21.0, episode length 1892
+Time 08h 02m 59s, episode reward -20.0, episode length 2131
+Time 08h 08m 34s, episode reward -21.0, episode length 1904
+Time 08h 11m 58s, episode reward -20.0, episode length 1023
+Time 08h 16m 19s, episode reward -17.0, episode length 1424
+Time 08h 21m 57s, episode reward -19.0, episode length 1945
+Time 08h 24m 51s, episode reward -21.0, episode length 764
+Time 08h 29m 16s, episode reward -21.0, episode length 1424
+Time 08h 33m 42s, episode reward -20.0, episode length 1470
+Time 08h 37m 22s, episode reward -21.0, episode length 1121
+Time 08h 44m 23s, episode reward -21.0, episode length 2553
+Time 08h 50m 13s, episode reward -21.0, episode length 1964
+Time 08h 53m 03s, episode reward -21.0, episode length 764
+Time 08h 58m 16s, episode reward -20.0, episode length 1773
+Time 09h 02m 34s, episode reward -21.0, episode length 1382
+Time 09h 07m 56s, episode reward -21.0, episode length 1837
+Time 09h 10m 50s, episode reward -21.0, episode length 792
+Time 09h 16m 29s, episode reward -16.0, episode length 1906
+Time 09h 20m 03s, episode reward -21.0, episode length 1028
+Time 09h 24m 21s, episode reward -21.0, episode length 1364
+Time 09h 29m 21s, episode reward -21.0, episode length 1644
+Time 09h 33m 31s, episode reward -20.0, episode length 1322
+Time 09h 39m 19s, episode reward -18.0, episode length 2004
+Time 09h 43m 20s, episode reward -21.0, episode length 1270
+Time 09h 46m 10s, episode reward -21.0, episode length 764
+Time 09h 50m 19s, episode reward -21.0, episode length 1306
+Time 09h 53m 49s, episode reward -20.0, episode length 1040
+Time 09h 58m 57s, episode reward -17.0, episode length 1745
+Time 10h 06m 59s, episode reward -20.0, episode length 2955
+Time 10h 11m 26s, episode reward -20.0, episode length 1459
+Time 10h 17m 20s, episode reward -20.0, episode length 2070
+Time 10h 20m 42s, episode reward -20.0, episode length 995
+Time 10h 26m 43s, episode reward -14.0, episode length 2085
+Time 10h 33m 03s, episode reward -21.0, episode length 2244
+Time 10h 38m 41s, episode reward -21.0, episode length 1964
+Time 10h 42m 12s, episode reward -20.0, episode length 1058
+Time 10h 47m 20s, episode reward -17.0, episode length 1708
+Time 10h 51m 28s, episode reward -19.0, episode length 1297
+Time 10h 54m 19s, episode reward -21.0, episode length 764
+Time 10h 58m 52s, episode reward -19.0, episode length 1417
+Time 11h 03m 35s, episode reward -19.0, episode length 1581
+Time 11h 12m 26s, episode reward -3.0, episode length 3327
+Time 11h 15m 23s, episode reward -21.0, episode length 824
+Time 11h 19m 36s, episode reward -19.0, episode length 1344
+Time 11h 24m 21s, episode reward -20.0, episode length 1579
+Time 11h 28m 38s, episode reward -21.0, episode length 1324
+Time 11h 34m 27s, episode reward -21.0, episode length 2004
+Time 11h 39m 57s, episode reward -20.0, episode length 1819
+Time 11h 43m 54s, episode reward -19.0, episode length 1235
+Time 11h 46m 57s, episode reward -21.0, episode length 824
+Time 11h 52m 44s, episode reward -21.0, episode length 1963
+Time 11h 56m 11s, episode reward -19.0, episode length 1014
+Time 12h 01m 08s, episode reward -20.0, episode length 1684
+Time 12h 06m 58s, episode reward -20.0, episode length 2045
+Time 12h 11m 10s, episode reward -17.0, episode length 1337
+Time 12h 17m 30s, episode reward -21.0, episode length 2260
+Time 12h 22m 39s, episode reward -16.0, episode length 1777
+Time 12h 26m 56s, episode reward -21.0, episode length 1392
+Time 12h 32m 44s, episode reward -20.0, episode length 2061
+Time 12h 36m 36s, episode reward -19.0, episode length 1237
+Time 12h 42m 52s, episode reward -17.0, episode length 2252
+Time 12h 48m 32s, episode reward -21.0, episode length 2004
+Time 12h 53m 50s, episode reward -20.0, episode length 1833
+Time 12h 58m 54s, episode reward -21.0, episode length 1726
+Time 13h 04m 37s, episode reward -20.0, episode length 2012
+Time 13h 09m 12s, episode reward -20.0, episode length 1459
+Time 13h 14m 52s, episode reward -21.0, episode length 1984
+Time 13h 18m 42s, episode reward -20.0, episode length 1216
+Time 13h 23m 46s, episode reward -18.0, episode length 1709
+running out of time
 15th thread has been stopped
+6th thread has been stopped
+20th thread has been stopped
+22th thread has been stopped
+14th thread has been stopped
+v_loss 0.255845552416 r_loss 0.0710683829959
+v_loss 0.0615916669197 r_loss 0.0071194410574
+v_loss 0.179495230668 r_loss 0.143818244477
+v_loss 0.202058222524 r_loss 0.0493862851991
+v_loss 0.225423804868 r_loss 0.103552453701
+v_loss 0.488985973764 r_loss 0.224428828323
+v_loss 0.160822340579 r_loss 0.079951301275
+v_loss 0.165707612482 r_loss 0.0518810307898
+v_loss 0.180721928105 r_loss 0.147380945921
+v_loss 0.310475399813 r_loss 0.203944332184
+v_loss 0.186313146552 r_loss 0.0582421634844
+v_loss 0.304404033773 r_loss 0.0693000871573
+v_loss 0.435419129482 r_loss 0.00831153605953
+v_loss 0.105292154436 r_loss 0.0468985639985
+v_loss 0.407415183674 r_loss 0.0322686709878
+v_loss 0.0962114774334 r_loss 0.0217372361394
+v_loss 0.216418033419 r_loss 0.0085222163065
+v_loss 0.675089696684 r_loss 0.228639304091
+v_loss 0.169844711208 r_loss 0.034539221346
+v_loss 0.493800461554 r_loss 0.0161540165593
+v_loss 0.177392050775 r_loss 0.0137643692158
+v_loss 0.560764393896 r_loss 0.0145812339036
+v_loss 0.102589351907 r_loss 0.0251189705472
+v_loss 0.158977580191 r_loss 0.141153245708
+v_loss 0.387271057441 r_loss 0.0236176855948
+v_loss 0.734377916194 r_loss 0.228944558497
+v_loss 0.562812703385 r_loss 0.0479061845594
+v_loss 0.237859010089 r_loss 0.0127423123521
+v_loss 0.174727411864 r_loss 0.00668424524994
+v_loss 0.172110935579 r_loss 0.0247607148465
+v_loss 0.139698605961 r_loss 0.018950396425
+v_loss 0.199687394731 r_loss 0.130852925795
+v_loss 0.11950515919 r_loss 0.0301216705497
+v_loss 0.159286914546 r_loss 0.0542114371378
+v_loss 0.35123281506 r_loss 0.234794660381
+v_loss 0.0761063431564 r_loss 0.0117649666129
+v_loss 0.323625711202 r_loss 0.0213186704371
+v_loss 0.245177025109 r_loss 0.0249527266755
+v_loss 0.280913852935 r_loss 0.0303723001749
+v_loss 0.0789178702879 r_loss 0.0205741859907
+v_loss 0.313554490475 r_loss 0.110272812031
+v_loss 0.0272940085257 r_loss 0.0129096799412
+v_loss 0.074613624971 r_loss 0.00908979865605
+v_loss 0.279484762045 r_loss 0.00760043898811
+v_loss 0.116524068788 r_loss 0.0321094021476
+v_loss 0.137937463143 r_loss 0.144150862455
+v_loss 0.208279284778 r_loss 0.0165059970136
+v_loss 0.0865049624281 r_loss 0.0291799452917
+v_loss 0.17414435271 r_loss 0.0306741631131
+v_loss 0.0970788045665 r_loss 0.0387395547412
+v_loss 0.957080758655 r_loss 0.0150703631152
+v_loss 0.661977531242 r_loss 0.0902099001385
+v_loss 0.186227917024 r_loss 0.188894709395
+v_loss 0.28658016358 r_loss 0.0136859547865
+v_loss 0.0681898380997 r_loss 0.0180338091315
+v_loss 0.0833871807581 r_loss 0.01644683827
+v_loss 0.129090752554 r_loss 0.00791008949045
+v_loss 0.863964155015 r_loss 0.00600456079023
+v_loss 0.179548767213 r_loss 0.0223984494621
+v_loss 0.0832606885727 r_loss 0.0174427097619
+v_loss 0.0770771765749 r_loss 0.0119944962476
+v_loss 0.553505745512 r_loss 0.162386596482
+v_loss 0.190766683372 r_loss 0.0176050740288
+v_loss 0.271981291658 r_loss 0.125207246002
+v_loss 0.593439276238 r_loss 0.215290268149
+v_loss 0.378276564598 r_loss 0.200932314035
+v_loss 0.19102852137 r_loss 0.00777323711399
+v_loss 0.577937001989 r_loss 0.0166901233059
+v_loss 0.437796241449 r_loss 0.0170467748389
+v_loss 0.239546778121 r_loss 0.0078420318457
+v_loss 0.246508222476 r_loss 0.0515499247701
+v_loss 0.228322251459 r_loss 0.022553033289
+v_loss 1.29336577453 r_loss 0.0194126633297
+v_loss 0.0481894148577 r_loss 0.0332931108566
+v_loss 0.784476294189 r_loss 0.0384684894697
+v_loss 0.487089932391 r_loss 0.149700593227
+v_loss 0.378053248344 r_loss 0.0146969511431
+v_loss 0.135174714024 r_loss 0.0182629017367
+v_loss 0.587011761931 r_loss 0.0116281898561
+v_loss 0.0646439849053 r_loss 0.0263423731031
+v_loss 0.160674894616 r_loss 0.015205218806
+v_loss 0.168561458543 r_loss 0.0466888174629
+v_loss 0.237889087555 r_loss 0.0515474012415
+v_loss 0.12380816477 r_loss 0.132750989529
+v_loss 0.295948460119 r_loss 0.015107275798
+v_loss 0.634545761518 r_loss 0.00782005680754
+v_loss 0.541666924069 r_loss 0.020177242077
+v_loss 0.370837764913 r_loss 0.0173065219865
+v_loss 0.440873488905 r_loss 0.00379493622403
+v_loss 0.619092089525 r_loss 0.0286038538018
+v_loss 0.175253133139 r_loss 0.0173929255368
+v_loss 0.320811322757 r_loss 0.014856058303
+v_loss 0.39904683973 r_loss 0.0151042257447
+v_loss 1.13567633192 r_loss 0.0381955433697
+v_loss 0.162059278696 r_loss 0.0233265630441
+v_loss 0.70814978679 r_loss 0.0116146154511
+v_loss 0.326118330994 r_loss 0.0179300171563
+v_loss 0.287593431226 r_loss 0.130453745222
+v_loss 0.334212482298 r_loss 0.263906881342
+v_loss 0.0825800151799 r_loss 0.00772723736412
+v_loss 0.211555117131 r_loss 0.0163588295066
+v_loss 0.413607648366 r_loss 0.0146621429397
+v_loss 0.120112773666 r_loss 0.0161814509961
+v_loss 0.0387510498803 r_loss 0.00535911355604
+v_loss 0.0448443313091 r_loss 0.0219525980572
+v_loss 0.375098366134 r_loss 0.0125016182136
+v_loss 0.423518399909 r_loss 0.0156764478444
+v_loss 0.396341844344 r_loss 0.0122905130097
+v_loss 0.469359099193 r_loss 0.0115332075133
+v_loss 0.286512271847 r_loss 0.0414923733493
+v_loss 0.505688548597 r_loss 0.0259287958693
+v_loss 0.630050836401 r_loss 0.0125534058642
+v_loss 0.243436725125 r_loss 0.0133279198921
+v_loss 0.148438577833 r_loss 0.0160329976693
+v_loss 0.211000449223 r_loss 0.0243340537266
+v_loss 0.679386996353 r_loss 0.136930448765
+v_loss 0.173769149235 r_loss 0.0189273080121
+v_loss 0.269396560346 r_loss 0.0111202658896
+v_loss 0.152200106891 r_loss 0.0186265860264
+v_loss 0.131610958489 r_loss 0.0143909940337
+v_loss 0.658229840247 r_loss 0.0147387495486
+v_loss 0.177778254414 r_loss 0.0637796539425
+v_loss 0.226849926929 r_loss 0.0323545438536
+v_loss 0.519406459541 r_loss 0.0140321370315
+v_loss 0.0303153054527 r_loss 0.0130228419846
+v_loss 0.0581287583124 r_loss 0.00470844269575
+v_loss 0.199595553968 r_loss 0.00573945703178
+v_loss 0.0819511372936 r_loss 0.020239192454
+v_loss 0.708247394584 r_loss 0.562788486678
+v_loss 0.109719596434 r_loss 0.00869943468673
+v_loss 0.162553706027 r_loss 0.0801663890305
+v_loss 0.224966075266 r_loss 0.0119549405198
+v_loss 0.104923686465 r_loss 0.0178731404258
+v_loss 0.0746155414712 r_loss 0.137942687827
+v_loss 0.356828221617 r_loss 0.017344061974
+v_loss 0.389879016309 r_loss 0.183857840691
+v_loss 0.224793224614 r_loss 0.198496241543
+v_loss 0.288846003137 r_loss 0.0223255678512
+v_loss 0.0368487592856 r_loss 0.00817113772937
+v_loss 0.103733241861 r_loss 0.0220166431973
+v_loss 0.167846716289 r_loss 0.0095639375241
+v_loss 0.143889149897 r_loss 0.123850011815
+v_loss 0.0521433141894 r_loss 0.0165609960495
+v_loss 0.457351737396 r_loss 0.0156404374474
+v_loss 0.0570510033372 r_loss 0.0143321261693
+v_loss 0.0686542965852 r_loss 0.0219672111918
+v_loss 0.20424370806 r_loss 0.0289071890985
+v_loss 0.0890921896928 r_loss 0.0108819257149
+v_loss 0.0592604800784 r_loss 0.0174228603171
+v_loss 0.0800258088518 r_loss 0.0125750147954
+v_loss 0.1825681077 r_loss 0.0297885657381
+v_loss 0.218210190075 r_loss 0.0108866213309
+v_loss 0.323885265388 r_loss 0.00777291962826
+v_loss 1.31018228896 r_loss 0.224900858492
+v_loss 0.680096198207 r_loss 0.00546282899457
+v_loss 0.0841003762349 r_loss 0.0152965811462
+v_loss 0.13011919417 r_loss 0.00757614762631
+v_loss 0.185617871848 r_loss 0.0312447138548
+v_loss 0.730415815444 r_loss 0.174420015667
+0th thread has been stopped
+8th thread has been stopped
+27th thread has been stopped
+25th thread has been stopped
+5th thread has been stopped
+30th thread has been stopped
+11th thread has been stopped
+9th thread has been stopped
+28th thread has been stopped
+18th thread has been stopped
+10th thread has been stopped
+29th thread has been stopped
+4th thread has been stopped
+12th thread has been stopped
+23th thread has been stopped
+21th thread has been stopped
+7th thread has been stopped
+3th thread has been stopped
+17th thread has been stopped
+26th thread has been stopped
+19th thread has been stopped
+1th thread has been stopped
+31th thread has been stopped
+24th thread has been stopped
+13th thread has been stopped
+16th thread has been stopped
+2th thread has been stopped
